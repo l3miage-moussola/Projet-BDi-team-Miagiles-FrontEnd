@@ -66,7 +66,7 @@ Un panier est une liste de **[produits](#prouit)** (**[références](#reference)
 ### Patient
 Personne bénéficiant de soins médicaux
 
-### Produits
+### Produit
 Synonyme de **[référence](#référence)**
 
 ## R
