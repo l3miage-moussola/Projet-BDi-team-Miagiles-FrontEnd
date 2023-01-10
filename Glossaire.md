@@ -2,30 +2,8 @@
 
 ## A
 
-### Abonné
-
-Cf. _[A12] [A15]_\
-Un abonné est un **[usager](#usager)** ayant acheté un **[abonnement](#abonnement)** valable. Ses informations personnelles sont
-enregistrées, et il bénéficie d’une réduction de **[location](#location)** et s'identifie grâce à son **[mot de passe](#mot-de-passe)**.
-
-### Abonnement
-
-Cf. _[A14]_\
-Un abonnement permet à un **[usager](#usager)** d'effectuer des **[locations](#location)** avec plus de facilités et
-avec un tarif reduit.
 
 ## B
-
-### Borne
-
-Cf. _[A22]_\
-Une **[borne](#borne)** est un équipement qui permet à l'**[usager](#usager)** d'interagir avec VéPick afin d'effectuer
-la **[location](#location)** d'un vélo. C'est l'intermédiaire entre l'**[usager](#usager)** et la **[station](#station)**.
-
-### Bornette
-
-Cf. _[A2] [A3]_\
-Emplacement d’une **[station](#station)** pouvant héberger un **[vélo](#vélo)**.
 
 ## C
 
