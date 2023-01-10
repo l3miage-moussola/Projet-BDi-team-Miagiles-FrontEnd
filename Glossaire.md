@@ -11,7 +11,7 @@
 Une commande est passée entre un **[établissement de santé](#Etablissement-de-santé)** et **[GroMed Inc](#Gromed-Inc)**. Elle est associée à un **[panier](#Panier)**. Une commande est passée à une date précise et pour un **[établissement de santé](#Etablissement-de-santé)** précis. Elle peut-être annulée jusqu'à 30 minutes après sa **[validation](#Validation-de-commande)**. Passé ce délai, elle sera forcément **[livrée](#livraison)**. Une commande donne potentiellement lieu à plusieurs **[livraisons](#livraison)** selon si certains **[produits](#produit)** sont **[hors-stock](#en-stock/hors-stock)**.
 
 ### Commande-Type
-Une commande-type est une liste de **[références](#référence)** et leurs quantités associées. Elle sert à accélerer le proccessus de passer une **[commande](#commande)**. Il s'agit plus ou moins d'un template de commande. Elle ne peut pas être modifiée par un **[utilisateur](#utilisateur)**. En revanche, une fois le **[panier](#panier)** de l'**[utilisateur](#utilisateur)** rempli avec les **[produits](#produits)** de la commande-type, ce **[panier](#panier)** peut être modifié.
+Une commande-type est une liste de **[références](#référence)** et leurs quantités associées. Elle sert à accélerer le proccessus de passer une **[commande](#commande)**. Il s'agit plus ou moins d'un template de commande. Elle ne peut pas être modifiée par un **[utilisateur](#utilisateur)**. En revanche, une fois le **[panier](#panier)** de l'**[utilisateur](#utilisateur)** rempli avec les **[produits](#produit)** de la commande-type, ce **[panier](#panier)** peut être modifié.
 
 
 ## D
