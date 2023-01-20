@@ -26,4 +26,15 @@ Le stock logique est forcément inférieur au stock physique
 StockLogique <= StockPhysique
 
 Situations critiques :
-Deux utilisateurs commandent une présentation P1 simultanément alors qu'il n'en reste qu'un exemplaire, 
+Deux Paniers de deux utilisateurs différents en cours de validation simultannée peuvent mener à un problème :
+Le stock logique peut tomber à zéro après la demande de validation de panier. Nous allons gérer cela dans la partie back-end et dans la partie BD :
+
+En BD : un trigger empêchant de faire tomber le stock en dessous de zéro
+En Back-end : si un tel trigger est renvoyé, il faut renvoyer au front-end le message d'échec de la transaction.
+
+
+## Conclusion :
+
+Bien qu'il manque encore des tables à modéliser, on peut déjà comprendre le schéma global de la base de donnée.
+Nos objectifs pour la suite de l'itération sont d'incorporer de manière plus exhaustive les données relatives à la
+base de données publique des médicaments.
