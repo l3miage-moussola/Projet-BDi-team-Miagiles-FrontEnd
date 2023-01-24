@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { TablePresentationComponent } from './table-presentation/table-presentation.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    TablePresentationComponent
   ],
   imports: [
     BrowserModule,
