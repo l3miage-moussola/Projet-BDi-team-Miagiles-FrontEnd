@@ -2,6 +2,13 @@ import {Component, Input} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmationPopupComponent} from "../confirmation-popup/confirmation-popup.component";
 
+
+/* TEMPORAIRE*/
+class HomeService {
+  panier: any;
+
+}
+
 @Component({
   selector: 'app-panier',
   templateUrl: './panier.component.html',
@@ -11,20 +18,28 @@ import {ConfirmationPopupComponent} from "../confirmation-popup/confirmation-pop
 export class PanierComponent{
 
 
+
   @Input() contenuPanier:any;
+  panier:any;
 
+  constructor(private dialogRef : MatDialog, private homeService : HomeService) {
+    this.ngOnInit()
 
-  constructor(private dialogRef : MatDialog) {}
+  }
+  ngOnInit(){
+    this.homeService.panier.subscribe((panier: any[]) => this.panier = panier);
+  }
     openDialog(){
       this.dialogRef.open(ConfirmationPopupComponent)
     }
 
-  items = [
+  /*items = [
     { CIP7: 100922, libelle: 'Doliprane',quantity: 2, price: 45.99 },
     { CIP7: 100992, libelle: 'Tramadol',quantity: 6, price: 29.99 },
     { CIP7: 103622, libelle: 'Boite de jsp quoi', quantity: 1, price: 19.99 }
-  ];
+  ];*/
   get totalPrice() {
+
     return this.contenuPanier.reduce((total:number, item:any)=>total+item.price)
   }
 
@@ -33,12 +48,3 @@ export class PanierComponent{
     this.openDialog();
   }
 }
-
-interface IContenuPanier {
-  CIP7: bigint;
-  libelle: string;
-  quantity: bigint;
-  price: number;
-}
-//var test = new ContenuPanier();
-
