@@ -11,13 +11,15 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { PanierComponent } from './panier/panier.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    PanierComponent
   ],
   imports: [
     BrowserModule,
