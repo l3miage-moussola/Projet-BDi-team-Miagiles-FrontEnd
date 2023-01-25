@@ -15,8 +15,12 @@
         <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
       </li>
     </ul>
+    <button mat-stroked-button href="/panier" routerLink="panier" *ngIf="!isLoggedIn">
+    <mat-icon>shopping_cart</mat-icon>
+    </button>
 
-    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+
+    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn" >
       <li class="nav-item">
         <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
       </li>
@@ -33,7 +37,10 @@
         <a href class="nav-link" (click)="logout()">LogOut</a>
       </li>
     </ul>
+
+
   </nav>
+
 
   <div class="container">
     <router-outlet></router-outlet>
