@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -17,6 +17,10 @@ import {MatButtonModule} from "@angular/material/button";
 import { ConfirmationPopupComponent } from './confirmation-popup/confirmation-popup.component';
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 import { EnregistrementCommandeTypePopupComponent } from './enregistrement-commande-type-popup/enregistrement-commande-type-popup.component';
+import { PanierValideComponent } from './panier-valide/panier-valide.component';
+import {MatOptionModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 @NgModule({
   declarations: [
@@ -26,7 +30,8 @@ import { EnregistrementCommandeTypePopupComponent } from './enregistrement-comma
     HomeComponent,
     PanierComponent,
     ConfirmationPopupComponent,
-    EnregistrementCommandeTypePopupComponent
+    EnregistrementCommandeTypePopupComponent,
+    PanierValideComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +41,11 @@ import { EnregistrementCommandeTypePopupComponent } from './enregistrement-comma
     HttpClientModule,
     MatIconModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

@@ -11,12 +11,18 @@ import {
 })
 export class ConfirmationPopupComponent {
   constructor(private dialogRef : MatDialog) {}
-  openDialog(){
+  openDialogEnregistrementCommandeType(){
     this.dialogRef.open(EnregistrementCommandeTypePopupComponent)
   }
 
+
   enregistrerCommandeType(): void{
-    this.openDialog()
+    this.openDialogEnregistrementCommandeType()
   }
 
+  public validerPanier() :void{
+    this.dialogRef.closeAll();
+
+
+  }
 }
