@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class PanierComponent {
 
+  validerPanier() : void{
+    console.log("test")}
 }

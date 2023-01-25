@@ -1,1 +1,38 @@
-<p>panier works!</p>
+<p>Mon panier</p>
+
+<div class="tab" style="width: 100%;margin-right: 1000px" ><!--*ngIf="obsPresentations | async as presentations"-->
+  <div class="row" style="width: 100%;margin-right: 100px;margin-left: 0px;">
+    <div class="col-sm-6 tableau" style="padding: 0px;margin: auto;    width: 1000%;">
+      <div class="card">
+        <div class="table-responsive" style="background-color: white;">
+          <table class="table">
+            <thead class="thead-dark">
+            <tr>
+              <th scope="col">Code CIP7</th>
+              <th scope="col">Libellé</th>
+              <th scope="col">Quantité</th>
+              <th scope="col">Prix(€)</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr ><!--*ngFor="let presentation of presentations" (click)="getPresentation(presentation)"-->
+              <td class="text-nowrap align-middle">65165410</td>
+              <td class="text-nowrap align-middle">Boite de jsp quoi</td>
+              <td class="text-nowrap align-middle">2</td>
+              <td class="text-nowrap align-middle">28,03</td>
+
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<br>
+
+<!--<input type="button" value="Valider mon panier" onClick="validerPanier()">-->
+<button (click)="this.validerPanier()">Valider mon panier</button>
+
