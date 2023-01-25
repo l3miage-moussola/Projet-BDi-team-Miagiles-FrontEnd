@@ -1,14 +1,18 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmationPopupComponent} from "../confirmation-popup/confirmation-popup.component";
 
 @Component({
   selector: 'app-panier',
   templateUrl: './panier.component.html',
-  styleUrls: ['./panier.component.css']
+  styleUrls: ['./panier.component.css'],
+  inputs: ['contenuPanier']
 })
 export class PanierComponent{
-  //contenuPanier: list;
+
+
+  @Input() contenuPanier:any;
+
 
   constructor(private dialogRef : MatDialog) {}
     openDialog(){
@@ -21,7 +25,7 @@ export class PanierComponent{
     { CIP7: 103622, libelle: 'Boite de jsp quoi', quantity: 1, price: 19.99 }
   ];
   get totalPrice() {
-    return this.items.reduce((total, item) => total + item.price, 0);
+    return this.contenuPanier.reduce((total:number, item:any)=>total+item.price)
   }
 
   validerPanier(): void{
@@ -29,3 +33,12 @@ export class PanierComponent{
     this.openDialog();
   }
 }
+
+interface IContenuPanier {
+  CIP7: bigint;
+  libelle: string;
+  quantity: bigint;
+  price: number;
+}
+//var test = new ContenuPanier();
+
