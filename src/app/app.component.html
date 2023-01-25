@@ -15,7 +15,10 @@
         <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
       </li>
     </ul>
-    <input type="button" value="Accéder au panier" href="/panier" routerLink="panier" *ngIf="!isLoggedIn">
+    <button mat-stroked-button href="/panier" routerLink="panier" *ngIf="!isLoggedIn">
+    <mat-icon>shopping_cart</mat-icon>
+    </button>
+
 
     <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn" >
       <li class="nav-item">

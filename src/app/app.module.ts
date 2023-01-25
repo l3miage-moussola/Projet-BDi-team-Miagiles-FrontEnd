@@ -12,6 +12,11 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { PanierComponent } from './panier/panier.component';
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import { ConfirmationPopupComponent } from './confirmation-popup/confirmation-popup.component';
+import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+import { EnregistrementCommandeTypePopupComponent } from './enregistrement-commande-type-popup/enregistrement-commande-type-popup.component';
 
 @NgModule({
   declarations: [
@@ -19,14 +24,19 @@ import { PanierComponent } from './panier/panier.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    PanierComponent
+    PanierComponent,
+    ConfirmationPopupComponent,
+    EnregistrementCommandeTypePopupComponent
   ],
   imports: [
     BrowserModule,
     NoopAnimationsModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule,
+    MatButtonModule,
+    MatDialogModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
