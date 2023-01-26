@@ -14,6 +14,9 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { CardComponent } from './card/card/card.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatIconModule} from "@angular/material/icon";
+import {TableModule} from "primeng/table";
+import {ButtonModule} from "primeng/button";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import {MatIconModule} from "@angular/material/icon";
     FormsModule,
     HttpClientModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    TableModule,
+    ButtonModule,
+    MatButtonModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
