@@ -21,6 +21,7 @@ import { PanierValideComponent } from './panier-valide/panier-valide.component';
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {HomeService} from "./_services/home.service";
 
 @NgModule({
   declarations: [
@@ -47,7 +48,10 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     MatAutocompleteModule,
     ReactiveFormsModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [
+    authInterceptorProviders,
+    HomeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
