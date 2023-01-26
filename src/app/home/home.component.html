@@ -1,6 +1,6 @@
+<app-search-bar></app-search-bar>
 
 <div class="card">
-  <h5>Programmatic Control</h5>
   <div class="mb-3">
     <p-button type="button" icon="pi pi-chevron-left" (click)="prev()" [disabled]="isFirstPage()" styleClass="p-button-text"></p-button>
     <p-button type="button" icon="pi pi-refresh" (click)="reset()" styleClass="p-button-text"></p-button>
@@ -13,6 +13,8 @@
         <th scope="col">codeCIP7</th>
         <th scope="col">libelle</th>
         <th scope="col">prix</th>
+        <th scope="col">quantité</th>
+        <th scope="col">Ajouter</th>
       </tr>
     </thead>
     <tbody>
@@ -20,9 +22,14 @@
         <td>{{ presentation.codeCIP7}}</td>
         <td> {{ presentation.libelle}}</td>
         <td> {{ presentation.prix }}</td>
+        <td><input type="number" [(ngModel)]="quantity" min="1"/></td>
+        <td><p-button type="button" icon="pi pi-plus" (click)="addToCart({CIP7:presentation, addQuantity:quantity})" styleClass="p-button-text"></p-button></td>
+
       </tr>
     </tbody>
   </table>
 </div>
 
-<app-search-bar></app-search-bar>
+
+<p-button type="button" icon="pi pi-refresh" (click)="reset()" styleClass="p-button-text"></p-button>
+<p-button type="button" icon="pi pi-chevron-right" (click)="next()" [disabled]="isLastPage()" styleClass="p-button-text"></p-button>
