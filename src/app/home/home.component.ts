@@ -10,8 +10,8 @@ import {HttpClient} from "@angular/common/http";
 
 
 export class HomeComponent implements OnInit {
-  private listPresentation: any;
 
+  private listPresentation: any;
   control: any;
 
   presentations! : Presentation[]
@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
   first = 0;
 
   rows = 10;
+  @Input() indexOfAddToCartButton: number| undefined;
   @Input() quantity: number | undefined;
   constructor(private homeService : HomeService) {
     this.presentations = []

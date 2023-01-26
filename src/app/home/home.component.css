@@ -1,4 +1,7 @@
 .test {
   display: flex;
   justify-content: space-evenly;
+};
+p-button.p-element{
+  width:100px;height:100px
 }

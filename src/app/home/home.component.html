@@ -18,12 +18,15 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let presentation of presentations">
+      <tr *ngFor="let presentation of presentations; let i = index"><!--[indexOfAddToCartButton]="i"-->
         <td>{{ presentation.codeCIP7}}</td>
         <td> {{ presentation.libelle}}</td>
         <td> {{ presentation.prix }}</td>
         <td><input type="number" [(ngModel)]="quantity" min="1"/></td>
-        <td><p-button type="button" icon="pi pi-plus" (click)="addToCart({CIP7:presentation, addQuantity:quantity})" styleClass="p-button-text"></p-button></td>
+        <td><button type="button" (click)="addToCart({CIP7:presentation, addQuantity:quantity})"><span class="material-icons">shopping_cart</span></button>
+
+          <!--<p-button type="button" icon="pi pi-plus" (click)="addToCart({CIP7:presentation, addQuantity:quantity})" styleClass="p-button-text"></p-button>-->
+        </td>
 
       </tr>
     </tbody>
