@@ -2,10 +2,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HomeService, Presentation} from "../_services/home.service";
 import {Observable} from "rxjs";
-
-
-import { Component } from '@angular/core';
-import {HomeService} from "../_services/home.service";
 import {HttpClient} from "@angular/common/http";
 
 @Component({
@@ -14,11 +10,6 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./home.component.css']
 })
 
-export class HomeComponent {
-  private listPresentation: any;
-
-
-
   /*constructor(private homeService: HomeService) {
 
      this.listPresentation=this.homeService.getListPresentationTot();
@@ -26,13 +17,11 @@ export class HomeComponent {
     console.log("exemple"+this.listPresentation.data);
 
   }*/
-  control: any;
-
-
 
 export class HomeComponent implements OnInit {
   private listPresentation: any;
-  
+
+  control: any;
 
   presentations! : Presentation[]
 
@@ -43,11 +32,11 @@ export class HomeComponent implements OnInit {
   constructor(private homeService : HomeService) {
     this.presentations = []
     homeService.getListPresentationTot().subscribe(
-      
+
       res =>{
         this.presentations = res
       }
-    
+
     )
   }
   ngOnInit(){

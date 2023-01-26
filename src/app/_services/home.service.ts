@@ -15,16 +15,6 @@ export class Presentation{
   providedIn: 'root'
 })
 export class HomeService {
-
-  presentations! : Observable<Presentation[]>
-
-
-  getListPresentationTot():Observable<Presentation[]>{
-    return this.http.get<Presentation[]>("/api/presentations/")
-  panier:any[];
-
-
-
   constructor(private http: HttpClient) {
     this.panier= [
       { CIP7: 100922, libelle: 'Doliprane',quantity: 2, price: 45.99 },
@@ -33,7 +23,20 @@ export class HomeService {
     ];
   }
 
-  
+
+  presentations! : Observable<Presentation[]>
+
+
+  getListPresentationTot():Observable<Presentation[]> {
+    return this.http.get<Presentation[]>("/api/presentations/")
+  }
+  panier:any[];
+
+
+
+
+
+
   addToCart(item: any) {
     const existingItem = this.panier.find(i => i.CIP7 === item.CIP7);
     if (existingItem) {
@@ -43,8 +46,6 @@ export class HomeService {
       this.panier.push(item)
     }
   }
-  getListPresentationTot(){
-    return this.http.get(" http://129.88.210.58:8080/api/presentations/")
 
-  }
+
 }
