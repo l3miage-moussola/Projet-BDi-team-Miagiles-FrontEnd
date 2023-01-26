@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -17,6 +17,18 @@ import {MatIconModule} from "@angular/material/icon";
 import {TableModule} from "primeng/table";
 import {ButtonModule} from "primeng/button";
 import {MatButtonModule} from "@angular/material/button";
+import { PanierComponent } from './panier/panier.component';
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import { ConfirmationPopupComponent } from './confirmation-popup/confirmation-popup.component';
+import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+import { EnregistrementCommandeTypePopupComponent } from './enregistrement-commande-type-popup/enregistrement-commande-type-popup.component';
+import { PanierValideComponent } from './panier-valide/panier-valide.component';
+import {MatOptionModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {HomeService} from "./_services/home.service";
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +36,12 @@ import {MatButtonModule} from "@angular/material/button";
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    CardComponent
+    CardComponent,
+    PanierComponent,
+    ConfirmationPopupComponent,
+    EnregistrementCommandeTypePopupComponent,
+    PanierValideComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
@@ -36,9 +53,19 @@ import {MatButtonModule} from "@angular/material/button";
     MatIconModule,
     TableModule,
     ButtonModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [
+    authInterceptorProviders,
+    HomeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,9 +1,12 @@
+
 import {Component, OnInit} from '@angular/core';
 import {HomeService, Presentation} from "../_services/home.service";
 import {Observable} from "rxjs";
 
 
-
+import { Component } from '@angular/core';
+import {HomeService} from "../_services/home.service";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-home',
@@ -11,9 +14,24 @@ import {Observable} from "rxjs";
   styleUrls: ['./home.component.css']
 })
 
+export class HomeComponent {
+  private listPresentation: any;
+
+
+
+  /*constructor(private homeService: HomeService) {
+
+     this.listPresentation=this.homeService.getListPresentationTot();
+    //this.homeService.getListPresentationTot().subscribe(res=>this.listPresentation=res);
+    console.log("exemple"+this.listPresentation.data);
+
+  }*/
+  control: any;
+
 
 
 export class HomeComponent implements OnInit {
+  private listPresentation: any;
   
 
   presentations! : Presentation[]
