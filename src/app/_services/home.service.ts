@@ -40,7 +40,7 @@ export class HomeService {
   addToCart(item: any) {
     const existingItem = this.panier.find(i => i.CIP7 === item.CIP7);
     if (existingItem) {
-      existingItem.quantity++;
+      existingItem.quantity+=item.addQuantity;
 
     } else {
       this.panier.push(item)

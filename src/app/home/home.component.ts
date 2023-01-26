@@ -1,22 +1,13 @@
-
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {HomeService, Presentation} from "../_services/home.service";
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 
-  /*constructor(private homeService: HomeService) {
-
-     this.listPresentation=this.homeService.getListPresentationTot();
-    //this.homeService.getListPresentationTot().subscribe(res=>this.listPresentation=res);
-    console.log("exemple"+this.listPresentation.data);
-
-  }*/
 
 export class HomeComponent implements OnInit {
   private listPresentation: any;
@@ -29,6 +20,7 @@ export class HomeComponent implements OnInit {
   first = 0;
 
   rows = 10;
+  @Input() quantity: number | undefined;
   constructor(private homeService : HomeService) {
     this.presentations = []
     homeService.getListPresentationTot().subscribe(
@@ -60,5 +52,10 @@ export class HomeComponent implements OnInit {
 
   isFirstPage(): boolean {
     return this.presentations ? this.first === 0 : true;
+  }
+
+  addToCart(item:any) {
+    this.homeService.addToCart(item)
+
   }
 }
