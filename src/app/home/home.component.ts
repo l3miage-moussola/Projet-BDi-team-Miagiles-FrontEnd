@@ -14,7 +14,7 @@ export class HomeComponent {
 
   constructor(private homeService: HomeService) {
 
-    //this.listPresentation=this.homeService.getListPresentationTot();
+     //this.listPresentation=this.homeService.getListPresentationTot();
     this.homeService.getListPresentationTot().subscribe(res=>this.listPresentation=res);
     console.log("exemple"+this.listPresentation.data);
 
