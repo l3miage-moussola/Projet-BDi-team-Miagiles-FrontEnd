@@ -5,7 +5,7 @@
     <p-button type="button" icon="pi pi-refresh" (click)="reset()" styleClass="p-button-text"></p-button>
     <p-button type="button" icon="pi pi-chevron-right" (click)="next()" [disabled]="isLastPage()" styleClass="p-button-text"></p-button>
   </div>
-  <p-table [value]="listePresentation" [paginator]="true" [rows]="rows" [showCurrentPageReport]="true" [(first)]="first" [tableStyle]="{'min-width': '50rem'}"
+ <!-- <p-table [value]="presentations" [paginator]="true" [rows]="rows" [showCurrentPageReport]="true" [(first)]="first" [tableStyle]="{'min-width': '50rem'}"
            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
     <ng-template pTemplate="header">
       <tr>
@@ -16,14 +16,33 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-customer>
-      <tr>
-        <td>{{customer.cip7}}</td>
-        <td>{{customer.libelle}}</td>
-        <td>{{customer.prix}}</td>
+        <tr *ngFor="let presentation of presentations">
+          <td>{{ presentation.codeCIP7}}</td>
+          <td> {{ presentation.libelle }}</td>
+          <td> {{ presentation.prix }}</td>
+          
+        </tr>
         <td><button mat-button><mat-icon>shopping_cart</mat-icon></button></td>
-      </tr>
+      
     </ng-template>
-  </p-table>
+  </p-table>-->
+
+  <table class="table" >
+    <thead>
+      <tr>
+        <th scope="col">codeCIP7</th>
+        <th scope="col">libelle</th>
+        <th scope="col">prix</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let presentation of presentations">
+        <td>{{ presentation.codeCIP7}}</td>
+        <td> {{ presentation.libelle}}</td>
+        <td> {{ presentation.prix }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 

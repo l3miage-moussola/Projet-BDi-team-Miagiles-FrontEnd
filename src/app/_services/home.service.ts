@@ -1,14 +1,25 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+
+export class Presentation{
+  codeCIP7 !: bigint
+  libelle !: string
+  prix! : number
+  stockLogique !: number
+  stockPhysique! : number
+}
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService {
 
-  constructor(private http:HttpClient) { }
+  presentations! : Observable<Presentation[]>
 
-  getListPresentationTot():Observable<any>{
-    return this.http.get("/api/presentations/")
+  constructor(private http:HttpClient) {
+   }
+
+  getListPresentationTot():Observable<Presentation[]>{
+    return this.http.get<Presentation[]>("/api/presentations/")
   }
 }
