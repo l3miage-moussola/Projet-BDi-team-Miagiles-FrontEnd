@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     homeService.getListPresentationTot().subscribe(
 
       res =>{
-        this.presentations = res
+        this.presentations = res.slice(0,10)
       }
 
     )
