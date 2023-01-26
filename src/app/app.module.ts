@@ -11,6 +11,12 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { CardComponent } from './card/card/card.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatIconModule} from "@angular/material/icon";
+import {TableModule} from "primeng/table";
+import {ButtonModule} from "primeng/button";
+import {MatButtonModule} from "@angular/material/button";
 import { PanierComponent } from './panier/panier.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
@@ -30,6 +36,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
+    CardComponent,
     PanierComponent,
     ConfirmationPopupComponent,
     EnregistrementCommandeTypePopupComponent,
@@ -42,6 +49,11 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    MatCardModule,
+    MatIconModule,
+    TableModule,
+    ButtonModule,
+    MatButtonModule,
     MatIconModule,
     MatButtonModule,
     MatDialogModule,

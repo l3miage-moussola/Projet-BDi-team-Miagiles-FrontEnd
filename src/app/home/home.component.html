@@ -1,1 +1,28 @@
+
+<div class="card">
+  <h5>Programmatic Control</h5>
+  <div class="mb-3">
+    <p-button type="button" icon="pi pi-chevron-left" (click)="prev()" [disabled]="isFirstPage()" styleClass="p-button-text"></p-button>
+    <p-button type="button" icon="pi pi-refresh" (click)="reset()" styleClass="p-button-text"></p-button>
+    <p-button type="button" icon="pi pi-chevron-right" (click)="next()" [disabled]="isLastPage()" styleClass="p-button-text"></p-button>
+  </div>
+
+  <table class="table" >
+    <thead>
+      <tr>
+        <th scope="col">codeCIP7</th>
+        <th scope="col">libelle</th>
+        <th scope="col">prix</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let presentation of presentations">
+        <td>{{ presentation.codeCIP7}}</td>
+        <td> {{ presentation.libelle}}</td>
+        <td> {{ presentation.prix }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <app-search-bar></app-search-bar>

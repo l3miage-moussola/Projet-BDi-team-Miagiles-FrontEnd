@@ -1,10 +1,26 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 
+import {Observable} from "rxjs";
+
+export class Presentation{
+  codeCIP7 !: bigint
+  libelle !: string
+  prix! : number
+  stockLogique !: number
+  stockPhysique! : number
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService {
+
+  presentations! : Observable<Presentation[]>
+
+
+  getListPresentationTot():Observable<Presentation[]>{
+    return this.http.get<Presentation[]>("/api/presentations/")
   panier:any[];
 
 
@@ -17,18 +33,10 @@ export class HomeService {
     ];
   }
 
-  /*addToCart(item: any) {
-    const existingItemIndex = this.panier.findIndex(i => i.CIP7 === item.CIP7);
-    if (existingItemIndex >= 0) {
-      this.panier[existingItemIndex].quantity += item.quantity;
-    } else {
-      this.panier.push(item);
-    }
-  }*/
+  
   addToCart(item: any) {
     const existingItem = this.panier.find(i => i.CIP7 === item.CIP7);
     if (existingItem) {
-      //existingItem.price=existingItem.price+(existingItem.price/existingItem.quantity);
       existingItem.quantity++;
 
     } else {
@@ -37,5 +45,6 @@ export class HomeService {
   }
   getListPresentationTot(){
     return this.http.get(" http://129.88.210.58:8080/api/presentations/")
+
   }
 }
