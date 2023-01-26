@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {HomeService} from "../_services/home.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-home',
@@ -6,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  list = [1,3,5,7,9]
+  listePresentation:any
+  constructor(private homeService : HomeService) {
+    this.homeService.getListPresentationTot().subscribe(res=>this.listePresentation=res)
+  }
+  list = [{ cip7 : 1 , prix : 2 , libelle : "test"
+  },{ cip7 : 2 , prix : 2 , libelle : "test"
+  },{ cip7 : 3 , prix : 2 , libelle : "test"
+  }]
 }
