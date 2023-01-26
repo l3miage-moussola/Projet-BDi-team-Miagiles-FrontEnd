@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {HomeService} from "../_services/home.service";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,10 @@ export class HomeComponent {
 
   constructor(private homeService: HomeService) {
 
-    this.homeService.getListPresentationTot().subscribe(res=>this.listPresentation=res)
+    //this.listPresentation=this.homeService.getListPresentationTot();
+    this.homeService.getListPresentationTot().subscribe(res=>this.listPresentation=res);
+    console.log("exemple"+this.listPresentation.data);
+
   }
   control: any;
 

@@ -36,6 +36,6 @@ export class HomeService {
     }
   }
   getListPresentationTot(){
-    return this.http.get("/listMedicament")
+    return this.http.get(" http://129.88.210.58:8080/api/presentations/")
   }
 }
