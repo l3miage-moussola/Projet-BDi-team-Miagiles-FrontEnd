@@ -27,6 +27,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {HomeService} from "./_services/home.service";
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { AddToCartButtonComponent } from './add-to-cart-button/add-to-cart-button.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     ConfirmationPopupComponent,
     EnregistrementCommandeTypePopupComponent,
     PanierValideComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    AddToCartButtonComponent
   ],
   imports: [
     BrowserModule,

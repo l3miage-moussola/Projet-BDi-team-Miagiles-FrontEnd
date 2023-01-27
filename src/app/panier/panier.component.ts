@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmationPopupComponent} from "../confirmation-popup/confirmation-popup.component";
-import {HomeService} from "../_services/home.service";
+import {HomeService, PresentationPanier} from "../_services/home.service";
 
 
 
@@ -17,11 +17,12 @@ export class PanierComponent implements OnInit{
 
 
   @Input() contenuPanier:any;
-  panier : any[];
+  panier : PresentationPanier[];
 
   constructor(private dialogRef : MatDialog, private homeService : HomeService) {
-    this.ngOnInit();
     this.panier = this.homeService.panier;
+    console.log(this.homeService.panier)
+    console.log(this.panier)
 
   }
   ngOnInit(){
@@ -31,14 +32,12 @@ export class PanierComponent implements OnInit{
       this.dialogRef.open(ConfirmationPopupComponent)
     }
   get totalPrice() {
-    return this.panier.reduce((total:number, item:any) => total + (item.price * item.quantity), 0);
+    return this.panier.reduce((total:number, item:PresentationPanier) => total + (item.prix * item.nbAAjouter), 0);
   }
 
   validerPanier(): void{
     this.openDialog();
   }
 
-  addToCart() {
-    this.homeService.addToCart({ CIP7: 100922, libelle: 'Doliprane',quantity: 2, price: 45.99 });
-  }
+
 }

@@ -3,12 +3,67 @@ import {HttpClient} from "@angular/common/http";
 
 import {Observable} from "rxjs";
 
-export class Presentation{
-  codeCIP7 !: bigint
+/*export interface PresentationCommande {
+  @Column(name="presentation")
+  @JoinTable(name="pres")
+  private long presentation;
+
+  @Column(name="commande")
+  @JoinTable(name="commande")
+  private long commande;
+
+  public PresentationCommande(codeCIP7presentation:number, long commande) {
+  this.presentation = presentation;
+  this.commande = commande;
+}
+
+public long getCommande() {
+  return commande;
+}
+
+public void setCommande(long commande) {
+  this.commande = commande;
+}
+
+public long getPresentation() {
+  return presentation;
+}
+
+public void setPresentation(long presentation) {
+  this.presentation = presentation;
+}
+}
+*/
+export interface Presentation{
+  codeCIP7 : number
+  libelle : string
+
+  medicaments : string[]
+  prix : number
+  stockLogique : number
+  stockPhysique : number
+}
+export interface Panier{
+  presentations: PresentationPanier[]
+}export class PresentationPanier{
+  constructor(item:Presentation,quantity:number) {
+    this.codeCIP7=item.codeCIP7
+    this.libelle=item.libelle
+    this.prix=item.prix
+    this.stockLogique=item.stockLogique
+    this.nbAAjouter=quantity
+  }
+  codeCIP7 !: number
   libelle !: string
-  prix! : number
+  prix !: number
   stockLogique !: number
-  stockPhysique! : number
+  nbAAjouter!: number
+
+}
+
+export class PresentationDeCommande {
+  constructor() {
+  }
 }
 
 @Injectable({
@@ -16,11 +71,7 @@ export class Presentation{
 })
 export class HomeService {
   constructor(private http: HttpClient) {
-    this.panier= [
-      { CIP7: 100922, libelle: 'Doliprane',quantity: 2, price: 45.99 },
-      { CIP7: 100992, libelle: 'Tramadol',quantity: 6, price: 29.99 },
-      { CIP7: 103622, libelle: 'Boite de jsp quoi', quantity: 1, price: 19.99 }
-    ];
+    this.presentationDeCommandeTest=new PresentationDeCommande()
   }
 
 
@@ -29,22 +80,27 @@ export class HomeService {
 
   getListPresentationTot():Observable<Presentation[]> {
     return this.http.get<Presentation[]>("/api/presentations/")
+
   }
-  panier:any[];
+  panier:PresentationPanier[]=[];
+  private presentationDeCommandeTest: PresentationDeCommande;
 
 
 
 
 
 
-  addToCart(item: any) {
-    const existingItem = this.panier.find(i => i.CIP7 === item.CIP7);
+  addToCart(item: PresentationPanier) {
+    this.http.post<PresentationDeCommande>('/commandes/{user}/addToCart body',this.presentationDeCommandeTest)
+    var existingItem = this.panier.find(i => i.codeCIP7 === item.codeCIP7);
     if (existingItem) {
-      existingItem.quantity++;
+      existingItem.nbAAjouter +=item.nbAAjouter;
 
     } else {
       this.panier.push(item)
     }
+    console.log(this.panier)
+
   }
 
 

@@ -1,26 +1,13 @@
-
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {HomeService, Presentation} from "../_services/home.service";
-import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 
-  /*constructor(private homeService: HomeService) {
-
-     this.listPresentation=this.homeService.getListPresentationTot();
-    //this.homeService.getListPresentationTot().subscribe(res=>this.listPresentation=res);
-    console.log("exemple"+this.listPresentation.data);
-
-  }*/
 
 export class HomeComponent implements OnInit {
-  private listPresentation: any;
-
   control: any;
 
   presentations! : Presentation[]
@@ -29,17 +16,19 @@ export class HomeComponent implements OnInit {
   first = 0;
 
   rows = 10;
+  @Input() quantitesInputNumber: number[]=[];
   constructor(private homeService : HomeService) {
     this.presentations = []
     homeService.getListPresentationTot().subscribe(
 
       res =>{
-        this.presentations = res
+        this.presentations = res.slice(0,10)
       }
 
     )
   }
   ngOnInit(){
+
 
   }
   next() {
