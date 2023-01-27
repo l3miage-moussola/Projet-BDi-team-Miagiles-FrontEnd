@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   first = 0;
 
   rows = 10;
-  @Input() quantity: number=-1;
+  @Input() quantitesInputNumber: number[]=[];
   constructor(private homeService : HomeService) {
     this.presentations = []
     homeService.getListPresentationTot().subscribe(
@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
     )
   }
   ngOnInit(){
+
 
   }
   next() {
