@@ -4,13 +4,30 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 
 export interface Presentation{
-  codeCIP7 : bigint
+  codeCIP7 : number
   libelle : string
 
   medicaments : string[]
   prix : number
   stockLogique : number
   stockPhysique : number
+}
+export interface Panier{
+  presentations: PresentationPanier[]
+}export class PresentationPanier{
+  constructor(item:Presentation,quantity:number) {
+    this.codeCIP7=item.codeCIP7
+    this.libelle=item.libelle
+    this.prix=item.prix
+    this.stockLogique=item.stockLogique
+    this.nbAAjouter=quantity
+  }
+  codeCIP7 !: number
+  libelle !: string
+  prix !: number
+  stockLogique !: number
+  nbAAjouter!: number
+
 }
 
 @Injectable({
@@ -31,22 +48,25 @@ export class HomeService {
 
   getListPresentationTot():Observable<Presentation[]> {
     return this.http.get<Presentation[]>("/api/presentations/")
+
   }
-  panier:any[]=[];
+  panier:PresentationPanier[]=[];
 
 
 
 
 
 
-  addToCart(item: any) {
-    const existingItem = this.panier.find(i => i.CIP7 === item.CIP7);
+  addToCart(item: PresentationPanier) {
+    var existingItem = this.panier.find(i => i.codeCIP7 === item.codeCIP7);
     if (existingItem) {
-      existingItem.addQuantity+=item.addQuantity;
+      existingItem.nbAAjouter +=item.nbAAjouter;
 
     } else {
       this.panier.push(item)
     }
+    console.log(this.panier)
+
   }
 
 

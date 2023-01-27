@@ -17,13 +17,14 @@ export class HomeComponent implements OnInit {
   first = 0;
 
   rows = 10;
-  @Input() quantity: number | undefined;
+  @Input() quantity: number=-1;
   constructor(private homeService : HomeService) {
     this.presentations = []
     homeService.getListPresentationTot().subscribe(
 
       res =>{
         this.presentations = res.slice(0,10)
+
       }
 
     )

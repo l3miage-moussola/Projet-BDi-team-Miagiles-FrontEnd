@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {HomeService, Presentation} from "../_services/home.service";
+import {HomeService, Presentation, PresentationPanier} from "../_services/home.service";
 
 
 @Component({
@@ -13,13 +13,13 @@ export class AddToCartButtonComponent {
 
       }
   @Input() indexOfAddToCartButton: number| undefined;
-  @Input() quantity: number | undefined;
+  @Input() quantity: number=-1;
   @Input() presentationCart: any | undefined;
   presentations! : Presentation[]
 
 
-addToCart(item:any) {
-    this.homeService.addToCart(item)
+addToCart(item:Presentation,quantity:number) {
+    this.homeService.addToCart(new PresentationPanier(item,quantity) )
 
   }
 
