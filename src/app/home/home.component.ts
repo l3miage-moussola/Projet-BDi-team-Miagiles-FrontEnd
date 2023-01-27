@@ -8,7 +8,6 @@ import {HomeService, Presentation} from "../_services/home.service";
 
 
 export class HomeComponent implements OnInit {
-
   control: any;
 
   presentations! : Presentation[]
@@ -24,7 +23,6 @@ export class HomeComponent implements OnInit {
 
       res =>{
         this.presentations = res.slice(0,10)
-
       }
 
     )
