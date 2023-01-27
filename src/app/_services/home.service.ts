@@ -3,12 +3,31 @@ import {HttpClient} from "@angular/common/http";
 
 import {Observable} from "rxjs";
 
-export class Presentation{
-  codeCIP7 !: bigint
+export interface Presentation{
+  codeCIP7 : number
+  libelle : string
+
+  medicaments : string[]
+  prix : number
+  stockLogique : number
+  stockPhysique : number
+}
+export interface Panier{
+  presentations: PresentationPanier[]
+}export class PresentationPanier{
+  constructor(item:Presentation,quantity:number) {
+    this.codeCIP7=item.codeCIP7
+    this.libelle=item.libelle
+    this.prix=item.prix
+    this.stockLogique=item.stockLogique
+    this.nbAAjouter=quantity
+  }
+  codeCIP7 !: number
   libelle !: string
-  prix! : number
+  prix !: number
   stockLogique !: number
-  stockPhysique! : number
+  nbAAjouter!: number
+
 }
 
 @Injectable({
@@ -16,11 +35,11 @@ export class Presentation{
 })
 export class HomeService {
   constructor(private http: HttpClient) {
-    this.panier= [
+    /*this.panier= [
       { CIP7: 100922, libelle: 'Doliprane',quantity: 2, price: 45.99 },
       { CIP7: 100992, libelle: 'Tramadol',quantity: 6, price: 29.99 },
       { CIP7: 103622, libelle: 'Boite de jsp quoi', quantity: 1, price: 19.99 }
-    ];
+    ];*/
   }
 
 
@@ -29,22 +48,25 @@ export class HomeService {
 
   getListPresentationTot():Observable<Presentation[]> {
     return this.http.get<Presentation[]>("/api/presentations/")
+
   }
-  panier:any[];
+  panier:PresentationPanier[]=[];
 
 
 
 
 
 
-  addToCart(item: any) {
-    const existingItem = this.panier.find(i => i.CIP7 === item.CIP7);
+  addToCart(item: PresentationPanier) {
+    var existingItem = this.panier.find(i => i.codeCIP7 === item.codeCIP7);
     if (existingItem) {
-      existingItem.quantity+=item.addQuantity;
+      existingItem.nbAAjouter +=item.nbAAjouter;
 
     } else {
       this.panier.push(item)
     }
+    console.log(this.panier)
+
   }
 
 

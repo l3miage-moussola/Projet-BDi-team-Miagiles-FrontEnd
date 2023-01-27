@@ -12,18 +12,24 @@
       <tr>
         <th scope="col">codeCIP7</th>
         <th scope="col">libelle</th>
+        <th scope="col">médicaments</th>
         <th scope="col">prix</th>
         <th scope="col">quantité</th>
         <th scope="col">Ajouter</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let presentation of presentations">
+      <tr *ngFor="let presentation of presentations; let i = index" >
         <td>{{ presentation.codeCIP7}}</td>
         <td> {{ presentation.libelle}}</td>
+        <td> {{ presentation.medicaments}}</td>
         <td> {{ presentation.prix }}</td>
         <td><input type="number" [(ngModel)]="quantity" min="1"/></td>
-        <td><p-button type="button" icon="pi pi-plus" (click)="addToCart({CIP7:presentation, addQuantity:quantity})" styleClass="p-button-text"></p-button></td>
+        <td><app-add-to-cart-button [indexOfAddToCartButton]="i" [presentationCart]="presentation" [quantity]="quantity"></app-add-to-cart-button>
+
+
+          <!--<p-button type="button" icon="pi pi-plus" (click)="addToCart({CIP7:presentation, addQuantity:quantity})" styleClass="p-button-text"></p-button>-->
+        </td>
 
       </tr>
     </tbody>
