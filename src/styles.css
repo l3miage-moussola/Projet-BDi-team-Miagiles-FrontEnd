@@ -1,9 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
-
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-mat-card{
-  justify-content: space-around;
+
+mat-card-actions {
+  justify-content: center !important;
+  display: flex !important;
 }
 
-
+.flexeur {
+  flex: 1 1 100%;
+}

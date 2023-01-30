@@ -5,3 +5,26 @@
   justify-content: flex-start;
   height: 100%;
 }
+
+mat-toolbar {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+img {
+  display: block;
+  max-height: 100%;
+}
+
+footer {
+  background-color: #2DAA55;
+  color: white;
+  font: 500 20px / 32px Roboto, "Helvetica Neue", sans-serif;
+}
+
+.container {
+  flex: 1 1 100%;
+}
