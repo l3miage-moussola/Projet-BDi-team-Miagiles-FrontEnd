@@ -1,6 +1,33 @@
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  margin: auto;
-  text-align: center;
+:host {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  background-image: url("../../assets/background.png");
+  background-size: cover;
+}
+
+.login-form {
+  display: flex;
+  flex-flow: column;
+  gap: 1rem;
+
+  /*
+  /déja dans la balise ngStyle, mais pour montrer qu'en SCSS on peut imbriquer/
+  button {
+    &[type="submit"] {
+      display: none;
+    }
+  }
+  */
+}
+
+.button {
+  place-items: center;
+  color: #f0fff3;
+  background-color: #155724;
+}
+
+.mat-raised-button.mat-success {
+  color: #f0fff3;
+  background-color: #155724;
 }
