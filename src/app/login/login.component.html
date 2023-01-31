@@ -9,17 +9,22 @@
       <button type="submit" [disabled]="!form.valid" [ngStyle]="{ display: 'none' }">
         Valider le formulaire
       </button> <!-- Ce bouton sert quand on appuie sur le bouton entrée pour valider notre formulaire -->
-      <mat-form-field>
-        <mat-label>Email address</mat-label>
-        <input type="email" matInput formControlName="email"/>
-        <!--<mat-error *ngIf="form.get('username')!.hasError('admin')">
-          Username must be "admin" in lowercase
-        </mat-error>-->
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Password</mat-label>
-        <input type="password" matInput formControlName="password"/>
-      </mat-form-field>
+      <div class="example-container">
+        <form [formGroup]="form">
+          <mat-form-field  appearance="fill" >
+            <mat-label>Email address</mat-label>
+            <input matInput placeholder="prenom.nom@example.com" formControlName="email">
+            <mat-error *ngIf="email!.invalid">{{getErrorMessage()}}</mat-error>
+                <!--<mat-label>Email address</mat-label>
+            <input type="email" matInput formControlName="email"/>
+            <mat-error *ngIf="form.get('username')!.hasError('admin')">
+              Username must be "admin" in lowercase
+            </mat-error>-->
+          </mat-form-field>
+        </form>
+      
+    </div>
+     
     </form>
   </mat-card-content>
 
@@ -30,6 +35,6 @@
       (click)="onSubmit()"
       [disabled]="!form.valid"
     >-->
-      <button mat-raised-button color="success">Connexion</button>
+      <button mat-raised-button>Connexion</button>
   </mat-card-actions>
 </mat-card>

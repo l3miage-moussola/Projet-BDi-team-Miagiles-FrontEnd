@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,13 +9,16 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form: any = {
-    email: null,
-    password: null
-  };
+  form: FormGroup = new FormGroup(
+    {
+      "email":  new FormControl('', [Validators.required, Validators.email]),
+      "password": new FormControl('')
+    }
+  );
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
+  hide = true;
   roles: string[] = [];
 
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
@@ -27,8 +30,25 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  get email() {
+    return this.form.get("email");
+  }
+
+  get password() {
+    return this.form.get("password");
+  }
+
+  getErrorMessage() {
+    if (this.form.get("email")?.hasError('required')) {
+      return 'You must enter a value';
+    }
+
+    return this.form.get("email")?.hasError('email') ? 'Not a valid email' : '';
+  }
+
   onSubmit(): void {
-    const { email, password } = this.form;
+    let email = this.form.get("email")?.value;
+    let password = this.form.get("password")?.value;
 
     this.authService.login(email, password).subscribe(
       data => {
