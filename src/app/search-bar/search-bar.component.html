@@ -1,13 +1,5 @@
-<form class="example-form">
-  <input type="text"
-         placeholder="Cherchez une présentation"
-         [formControl]="control"
-         [matAutocomplete]="auto"
-         class="example-input">
-  <mat-autocomplete #auto="matAutocomplete">
-    <mat-option *ngFor="let street of filteredPresentation | async" [value]="street">
-      {{street}}
-    </mat-option>
-  </mat-autocomplete>
-</form>
-<input type="button" id="searchbutton2" value="Rechercher" style="width: 10%;margin-right: 0px;margin-left: 3px">
+
+<div class="input-group">
+  <input type="search" [(ngModel)]="denomination" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+  <button type="button" (click)="sendDenom()" class="btn btn-outline-primary">search</button>
+</div>

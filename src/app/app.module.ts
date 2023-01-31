@@ -28,6 +28,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {HomeService} from "./_services/home.service";
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { AddToCartButtonComponent } from './add-to-cart-button/add-to-cart-button.component';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { AddToCartButtonComponent } from './add-to-cart-button/add-to-cart-butto
     MatOptionModule,
     MatSelectModule,
     MatAutocompleteModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ],
   providers: [
     authInterceptorProviders,

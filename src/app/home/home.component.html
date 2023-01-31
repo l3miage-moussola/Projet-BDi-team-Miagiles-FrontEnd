@@ -1,34 +1,44 @@
-<app-search-bar></app-search-bar>
+<app-search-bar (denomEvent)="search($event)"></app-search-bar>
 
 <div class="card">
-  <div class="mb-3">
+  <!-- <div class="mb-3">
     <p-button type="button" icon="pi pi-chevron-left" (click)="prev()" [disabled]="isFirstPage()" styleClass="p-button-text"></p-button>
     <p-button type="button" icon="pi pi-refresh" (click)="reset()" styleClass="p-button-text"></p-button>
     <p-button type="button" icon="pi pi-chevron-right" (click)="next()" [disabled]="isLastPage()" styleClass="p-button-text"></p-button>
-  </div>
+  </div> -->
 
-  <table class="table" >
+  <table class="table" width="100%" >
     <thead>
       <tr>
-        <th scope="col">codeCIP7</th>
+        <!-- <th scope="col">codeCIP7</th> -->
         <th scope="col">libelle</th>
         <th scope="col">médicaments</th>
         <th scope="col">prix</th>
         <th scope="col">quantité</th>
-        <th scope="col">Ajouter</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let presentation of presentations; let i = index" >
-        <td>{{ presentation.codeCIP7}}</td>
-        <td> {{ presentation.libelle}}</td>
-        <td> {{ presentation.medicaments}}</td>
-        <td> {{ presentation.prix }}</td>
-        <td><input type="number" [(ngModel)]="quantitesInputNumber[i]" min="1"/></td>
-        <td><app-add-to-cart-button [indexOfAddToCartButton]="i" [presentationCart]="presentation" [quantity]="quantitesInputNumber[i]"></app-add-to-cart-button>
+      <tr *ngFor="let pres of presentations; let i = index" >
+        <!-- <td>{{ pres.codeCIP7}}</td> -->
+        <td> {{ pres.libelle}}</td>
+        <td *ngFor="let medicament of pres.medicaments"> {{ medicament.denomination }}</td>
+        <td> {{ pres.prix }}</td>
+        <!--<td><input type="number" [(ngModel)]="quantitesInputNumber[i]" min="1"/></td>-->
+        <td>
+          <!-- <button (click)="showClick(pres)"> -->
+            
+            <div *ngIf="!pres.showAdd" class="example-button-container">
+              <button (click)="showClick(pres)" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"><mat-icon>menu</mat-icon></button>
+            </div>
+            <app-add-to-cart-button  [show]="pres.showAdd"  
+                                     [presentation]="pres"
+                                     (produitEvent)="addToCart($event)">
+
+            </app-add-to-cart-button>
 
 
-          <!--<p-button type="button" icon="pi pi-plus" (click)="addToCart({CIP7:presentation, addQuantity:quantity})" styleClass="p-button-text"></p-button>-->
+                 
+
         </td>
 
       </tr>
@@ -37,5 +47,5 @@
 </div>
 
 
-<p-button type="button" icon="pi pi-refresh" (click)="reset()" styleClass="p-button-text"></p-button>
-<p-button type="button" icon="pi pi-chevron-right" (click)="next()" [disabled]="isLastPage()" styleClass="p-button-text"></p-button>
+<!-- <p-button type="button" icon="pi pi-refresh" (click)="reset()" styleClass="p-button-text"></p-button>
+<p-button type="button" icon="pi pi-chevron-right" (click)="next()" [disabled]="isLastPage()" styleClass="p-button-text"></p-button> -->
