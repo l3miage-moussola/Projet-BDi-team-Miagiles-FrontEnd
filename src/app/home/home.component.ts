@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {HomeService, Medicament, Presentation, PresMed, Produit} from "../_services/home.service";
+import {Commande, HomeService, Medicament, Presentation, PresMed, Produit, Utilisateur} from "../_services/home.service";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,6 +9,13 @@ import {HomeService, Medicament, Presentation, PresMed, Produit} from "../_servi
 
 export class HomeComponent implements OnInit {
 
+  utilisateur : Utilisateur = {
+    adresseMail : "test@mail.com",
+    motDePasse : 'mdp',
+    prenom : "Prenom"
+  }
+
+  commande!: Commande
 
   control: any;
 
@@ -29,13 +36,15 @@ export class HomeComponent implements OnInit {
 
 
   constructor(private homeService : HomeService) {
+    this.getPanier()
+  
     this.presentations = []
-    homeService.getListPresentationTot().subscribe(
-        res =>{
-        this.presentations = res
-      }
+    // homeService.getListPresentationTot().subscribe(
+    //     res =>{
+    //     this.presentations = res
+    //   }
 
-    )
+    // )
   }
   ngOnInit(){
 
@@ -67,7 +76,7 @@ export class HomeComponent implements OnInit {
   }
 
   addToCart(produit : Produit): void{
-    this.homeService.addToCart(produit)
+    this.homeService.addToCart(produit, this.commande)
     console.log(produit)
   }
 
@@ -76,5 +85,20 @@ export class HomeComponent implements OnInit {
       this.presentations = res
     }
     )
+  }
+
+
+  async getPanier(): Promise<void>{
+    await this.homeService.getPanier(this.utilisateur.adresseMail).then( e => {
+      console.log(e)
+      this.commande = e
+    })
+
+    await this.fillPanier()
+  }
+
+  async fillPanier() : Promise<void>{
+    await this.homeService.fillPanier(this.commande)
+    
   }
 }
