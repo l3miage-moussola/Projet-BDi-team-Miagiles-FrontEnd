@@ -5,6 +5,7 @@ import {
 } from "../enregistrement-commande-type-popup/enregistrement-commande-type-popup.component";
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
+import {ValiderPanierService} from "../_services/valider-panier.service";
 
 @Component({
   selector: 'app-confirmation-popup',
@@ -15,7 +16,7 @@ export class ConfirmationPopupComponent {
   private VALIDATION_PANIER_API = '/api/commandes/validerPanier?userMail=';
   private resultatValidation: string;
 
-  constructor(private dialogRef : MatDialog, private http: HttpClient, private validationService : ValidationService) {
+  constructor(private dialogRef : MatDialog, private http: HttpClient, private validationService : ValiderPanierService) {
     this.resultatValidation='';
   }
   openDialogEnregistrementCommandeType(){
