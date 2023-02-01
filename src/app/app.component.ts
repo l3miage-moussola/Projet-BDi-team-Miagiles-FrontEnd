@@ -35,4 +35,8 @@ export class AppComponent implements OnInit {
     this.tokenStorageService.signOut();
     window.location.reload();
   }
+
+  getEvent(val : boolean){
+    this.isLoggedIn = val
+  }
 }

@@ -15,26 +15,28 @@
             <mat-label>Email address</mat-label>
             <input matInput placeholder="prenom.nom@example.com" formControlName="email">
             <mat-error *ngIf="email!.invalid">{{getErrorMessage()}}</mat-error>
-                <!--<mat-label>Email address</mat-label>
-            <input type="email" matInput formControlName="email"/>
-            <mat-error *ngIf="form.get('username')!.hasError('admin')">
-              Username must be "admin" in lowercase
-            </mat-error>-->
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Enter your password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password"/>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
           </mat-form-field>
         </form>
-      
+
     </div>
-     
+
     </form>
   </mat-card-content>
 
   <mat-card-actions>
-    <!--<button
+    <button
       mat-raised-button
       color="success"
       (click)="onSubmit()"
       [disabled]="!form.valid"
-    >-->
-      <button mat-raised-button>Connexion</button>
+    >
+    Connexion</button>
   </mat-card-actions>
 </mat-card>

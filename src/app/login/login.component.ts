@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -16,18 +16,12 @@ export class LoginComponent implements OnInit {
     }
   );
   isLoggedIn = false;
-  isLoginFailed = false;
-  errorMessage = '';
+  @Output() loggedChange : EventEmitter<boolean> = new EventEmitter<boolean>()
   hide = true;
-  roles: string[] = [];
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    if (this.tokenStorage.getToken()) {
-      this.isLoggedIn = true;
-      this.roles = this.tokenStorage.getUser().roles;
-    }
   }
 
   get email() {
@@ -50,24 +44,22 @@ export class LoginComponent implements OnInit {
     let email = this.form.get("email")?.value;
     let password = this.form.get("password")?.value;
 
-    this.authService.login(email, password).subscribe(
-      data => {
-        this.tokenStorage.saveToken(data.accessToken);
-        this.tokenStorage.saveUser(data);
-
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getUser().roles;
-        this.reloadPage();
-      },
-      err => {
-        this.errorMessage = err.error.message;
-        this.isLoginFailed = true;
-      }
-    );
+    this.authService.login(email,password).subscribe(data=>{
+      this.isLoggedIn = data
+      console.log("data "+data)
+      console.log("isLoggedIn ",this.isLoggedIn)
+      this.emitLogeedIn()
+    })
+    //err => {
+      //this.errorMessage = err.error.message;
+      //this.isLoginFailed = true;
+    //}
   }
 
   reloadPage(): void {
     window.location.reload();
+  }
+  emitLogeedIn(){
+    this.loggedChange.emit(this.isLoggedIn)
   }
 }

@@ -30,6 +30,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatOptionModule } from "@angular/material/core";
 import { MatSelectModule } from "@angular/material/select";
 import { MatAutocompleteModule} from "@angular/material/autocomplete";
+import {FlexModule} from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -44,24 +45,25 @@ import { MatAutocompleteModule} from "@angular/material/autocomplete";
     SearchBarComponent,
     AddToCartButtonComponent
   ],
-  imports: [
-    BrowserModule,
-    NoopAnimationsModule,
-    AppRoutingModule,
-    FormsModule,
-    MatInputModule,
-    HttpClientModule,
-    MatCardModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatDialogModule,
-    MatOptionModule,
-    MatSelectModule,
-    MatAutocompleteModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        BrowserModule,
+        NoopAnimationsModule,
+        AppRoutingModule,
+        FormsModule,
+        MatInputModule,
+        HttpClientModule,
+        MatCardModule,
+        MatIconModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatDialogModule,
+        MatOptionModule,
+        MatSelectModule,
+        MatAutocompleteModule,
+        ReactiveFormsModule,
+        FlexModule
+    ],
   providers: [
     authInterceptorProviders,
     HomeService
