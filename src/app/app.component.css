@@ -6,6 +6,11 @@
   height: 100%;
 }
 
+.header {
+  background-color: #38B6FF;
+  color: white;
+}
+
 mat-toolbar {
   display: flex;
   flex-flow: row;
@@ -16,13 +21,19 @@ mat-toolbar {
 
 img {
   display: block;
-  max-height: 100%;
+  max-height: 70%;
+}
+
+a {
+  color: white;
+  font: 400 20px / 40px Roboto, "Helvetica Neue", sans-serif;
 }
 
 footer {
-  background-color: #2DAA55;
+  background-color: #38B6FF;
   color: white;
-  font: 500 20px / 32px Roboto, "Helvetica Neue", sans-serif;
+  font: 300 15px / 22px Roboto, "Helvetica Neue", sans-serif;
+  text-align: center;
 }
 
 .container {

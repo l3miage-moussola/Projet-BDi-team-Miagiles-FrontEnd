@@ -1,4 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
+import { AuthService } from '../_services/auth.service';
 import {Commande, HomeService, Medicament, Presentation, PresMed, Produit, Utilisateur} from "../_services/home.service";
 @Component({
   selector: 'app-home',
@@ -9,19 +11,15 @@ import {Commande, HomeService, Medicament, Presentation, PresMed, Produit, Utili
 
 export class HomeComponent implements OnInit {
 
-  utilisateur : Utilisateur = {
-    adresseMail : "test@mail.com",
-    motDePasse : 'mdp',
-    prenom : "Prenom"
-  }
+  userMail! : string
 
   commande!: Commande
 
   control: any;
 
-  presentations! : Presentation[]
-  medicaments ! : Medicament[]
-  presmeds !:PresMed[]
+  presentations! : Presentation[];
+  medicaments ! : Medicament[];
+  presmeds !:PresMed[];
 
 
   first = 0;
@@ -29,22 +27,14 @@ export class HomeComponent implements OnInit {
   rows = 10;
 
 
-  
+
 
   @Input() quantitesInputNumber: number[]=[];
 
 
 
-  constructor(private homeService : HomeService) {
-    this.getPanier()
-  
-    this.presentations = []
-    // homeService.getListPresentationTot().subscribe(
-    //     res =>{
-    //     this.presentations = res
-    //   }
+  constructor(private homeService : HomeService, private auth : AuthService) {
 
-    // )
   }
   ngOnInit(){
 
@@ -53,6 +43,10 @@ export class HomeComponent implements OnInit {
 
   next() {
     this.first = this.first + this.rows;
+  }
+
+  pageChanged(event: PageEvent) {
+
   }
 
   prev() {
@@ -88,17 +82,15 @@ export class HomeComponent implements OnInit {
   }
 
 
-  async getPanier(): Promise<void>{
-    await this.homeService.getPanier(this.utilisateur.adresseMail).then( e => {
-      console.log(e)
-      this.commande = e
-    })
+  // async getPanier(): Promise<void>{
+  //   await this.homeService.getPanier(this.userMail);
+  //   this.commande = this.homeService.commande
 
-    await this.fillPanier()
-  }
+  //   await this.fillPanier()
+  // }
 
-  async fillPanier() : Promise<void>{
-    await this.homeService.fillPanier(this.commande)
+  // async fillPanier() : Promise<void>{
+  //   await this.homeService.fillPanier(this.commande)
     
-  }
+  // }
 }
