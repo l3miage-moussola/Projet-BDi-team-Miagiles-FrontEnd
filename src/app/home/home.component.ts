@@ -19,9 +19,9 @@ export class HomeComponent implements OnInit {
 
   control: any;
 
-  presentations! : Presentation[]
-  medicaments ! : Medicament[]
-  presmeds !:PresMed[]
+  presentations! : Presentation[];
+  medicaments ! : Medicament[];
+  presmeds !:PresMed[];
 
 
   first = 0;
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   rows = 10;
 
 
-  
+
 
   @Input() quantitesInputNumber: number[]=[];
 
@@ -53,6 +53,10 @@ export class HomeComponent implements OnInit {
 
   next() {
     this.first = this.first + this.rows;
+  }
+
+  pageChanged(event: PageEvent) {
+
   }
 
   prev() {

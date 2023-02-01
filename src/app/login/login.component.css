@@ -6,6 +6,11 @@
   background-size: cover;
 }
 
+mat-card {
+  background-color: rgba(245, 245, 245, 0.57);
+  /*opacity: 0.5;*/
+}
+
 .login-form {
   display: flex;
   flex-flow: column;
@@ -19,15 +24,4 @@
     }
   }
   */
-}
-
-.button {
-  place-items: center;
-  color: #f0fff3;
-  background-color: #155724;
-}
-
-.mat-raised-button.mat-success {
-  color: #f0fff3;
-  background-color: #155724;
 }

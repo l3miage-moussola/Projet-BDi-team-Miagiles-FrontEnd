@@ -1,45 +1,18 @@
-<!-- <app-login></app-login> -->
-
-<div id="app">
-  <nav class="navbar navbar-expand navbar-dark " style="background: #1EA7CF">
-    <a href="#" class="navbar-brand"><img src="../assets/LogoSansFond.png" width="150" height="50"></a>
-    <ul class="navbar-nav mr-auto" routerLinkActive="active">
-      <li class="nav-item">
-        <a href="/home" class="nav-link" routerLink="home">Home </a>
-      </li>
-      <li class="nav-item">
-        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
-      </li>
-    </ul>
-    <button mat-stroked-button href="/panier" routerLink="panier" *ngIf="!isLoggedIn">
+<mat-toolbar class="header"> <!-- ajouter ça après *ngIf="isLoggedIn"-->
+  <img src="assets/gromedLogo.svg" routerLink="home" [style.cursor]="'pointer'"/>
+  <span class="flexeur"></span>
+  <a href="/home" routerLink="home">Home </a>
+  <button mat-icon-button href="/panier" routerLink="panier">
     <mat-icon>shopping_cart</mat-icon>
-    </button>
+  </button>
+  <button mat-icon-button (click)="logout()">
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>
 
-
-    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn" >
-      <li class="nav-item">
-        <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
-      </li>
-      <li class="nav-item">
-        <a href="/login" class="nav-link" routerLink="login">Login</a>
-      </li>
-    </ul>
-
-    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
-      <li class="nav-item">
-        <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
-      </li>
-      <li class="nav-item">
-        <a href class="nav-link" (click)="logout()">LogOut</a>
-      </li>
-    </ul>
-
-
-  </nav>
-
-l
-  <div class="container">
-    <router-outlet></router-outlet>
-  </div>
+<div class="container">
+  <router-outlet></router-outlet>
 </div>
-
+<footer class="footer">
+  <span>© 2023 Gromed </span>
+</footer>

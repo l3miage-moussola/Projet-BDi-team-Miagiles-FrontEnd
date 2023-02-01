@@ -1,0 +1,33 @@
+<div class="card">
+  <table class="table" width="100%">
+    <thead>
+    <tr>
+      <th scope="col">libelle</th>
+      <th scope="col">médicaments</th>
+      <th scope="col">prix</th>
+      <th scope="col">quantité</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let pres of presentations; let i = index">
+      <td> {{ pres.libelle}}</td>
+      <td *ngFor="let medicament of pres.medicaments"> {{ medicament.denomination }}</td>
+      <td> {{ pres.prix }}</td>
+      <!--<td><input type="number" [(ngModel)]="quantitesInputNumber[i]" min="1"/></td>-->
+      <td>
+        <!-- <button (click)="showClick(pres)"> -->
+        <div *ngIf="!pres.showAdd" class="example-button-container">
+          <button (click)="showClick(pres)" mat-mini-fab color="primary"
+                  aria-label="Example icon button with a menu icon">
+            <mat-icon>menu</mat-icon>
+          </button>
+        </div>
+        <app-add-to-cart-button [show]="pres.showAdd"
+                                [presentation]="pres"
+                                (produitEvent)="addToCart($event)">
+        </app-add-to-cart-button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
