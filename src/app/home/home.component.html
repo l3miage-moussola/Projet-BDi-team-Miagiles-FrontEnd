@@ -18,9 +18,14 @@
     </mat-card-content>
     <mat-card-actions>
       <button mat-button>+ D'INFOS</button>
-      <button mat-icon-button>
+      <button *ngIf="!pres.showAdd" mat-icon-button (click)="showClick(pres)">
         <mat-icon>add_shopping_cart</mat-icon>
       </button>
+      <app-add-to-cart-button  [show]="pres.showAdd"  
+                                     [presentation]="pres"
+                                     (produitEvent)="addToCart($event)">
+
+      </app-add-to-cart-button>
     </mat-card-actions>
   </mat-card>
 </div>
