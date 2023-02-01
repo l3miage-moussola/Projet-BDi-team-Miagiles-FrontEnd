@@ -1,47 +1,46 @@
-<h2>Mon panier</h2>
+<div *ngIf="homeService.panier.length === 0" style="text-align: center">
+  <img src="../../assets/smiley.png" width="20%">
+  <h4>Votre panier est vide</h4>
+</div>
 
-<div class="tab" style="width: 100%;margin-right: 1000px" ><!--*ngIf="obsPresentations | async as presentations"-->
-  <div class="row" style="width: 100%;margin-right: 100px;margin-left: 0;">
-    <div class="col-sm-6 tableau" style="padding: 0;margin: auto;    width: 1000%;">
-      <div class="card">
-        <div class="table-responsive" style="background-color: white;">
-          <table class="table table-bordered">
-            <thead class="thead-dark">
-            <tr>
-
-              <th scope="col">Libellé</th>
-              <th scope="col">Medicament</th>
-              <th scope="col">Quantité</th>
-              <th scope="col">Prix(€)</th>
-
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let item of homeService.panier">
-              <td>{{item.presentation.libelle}}</td>
-              <td *ngFor="let medicament of item.presentation.medicaments">{{medicament.denomination}}</td>
-              <td>{{item.quantite}}</td>
-              <td>{{item.presentation.prix}}</td>
-
-            </tr>
-            <tr>
-              <td ></td>
-              <td></td>
-              <td>Prix total</td>
-              <td>{{totalPrice}}</td>
-
-
-            </tr>
-            </tbody>
-          </table>
+<div *ngIf="homeService.panier.length !== 0" style="text-align: center">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title style="font-size: xx-large">Mon panier</mat-card-title>
+      <mat-card-subtitle style="font-size: large" *ngIf="homeService.panier.length > 1">{{ homeService.panier.length }}
+        articles
+      </mat-card-subtitle>
+      <mat-card-subtitle style="font-size: large"
+                         *ngIf="homeService.panier.length === 1">{{ homeService.panier.length }} article
+      </mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+  <br><br>
+  <mat-card class="example-card" *ngFor="let item of homeService.panier">
+    <mat-card-header *ngFor="let medicament of item.presentation.medicaments">
+      <mat-card-title style="font-weight: bold">{{ medicament.denomination }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div style="display: flex; justify-content: space-around;">
+        <div>
+          <p>Prix unitaire</p>
+          <p>{{ item.presentation.prix }} €</p>
+        </div>
+        <div>
+          <p>Quantité</p>
+          <p>{{ item.quantite }}</p>
+        </div>
+        <div>
+          <p>Total</p>
+          <p>{{ item.presentation.prix * item.quantite }} €</p>
         </div>
       </div>
-    </div>
-  </div>
+    </mat-card-content>
+  </mat-card>
+  <br>
+  <p style="font-weight: bold">Total {{ totalPrice }} €</p>
 
+  <button mat-raised-button (click)="this.validerPanier()">Valider mon panier</button>
+  <br>
 </div>
-<br>
-
-<button (click)="this.validerPanier()">Valider mon panier</button>
-
 
