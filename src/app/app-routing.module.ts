@@ -13,9 +13,6 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'panier', component: PanierComponent },
   { path: 'panier-valide', component: PanierValideComponent },
-
-
-  { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({

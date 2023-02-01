@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
-import { AuthService } from '../_services/auth.service';
-import {Commande, HomeService, Medicament, Presentation, PresMed, Produit, Utilisateur} from "../_services/home.service";
+import {HomeService, Medicament, PagePresentation, Presentation, PresMed, Produit} from "../_services/home.service";
+import {PageEvent} from "@angular/material/paginator";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -10,43 +9,47 @@ import {Commande, HomeService, Medicament, Presentation, PresMed, Produit, Utili
 
 
 export class HomeComponent implements OnInit {
-
-  userMail! : string
+  dataSource:PagePresentation = {content:[],totalElements:0  };  userMail! : string
 
   commande!: Commande
 
   control: any;
-
   presentations! : Presentation[];
   medicaments ! : Medicament[];
   presmeds !:PresMed[];
-
-
+  pageSizeOptions = [5, 10, 25, 100];
+  length=10;
+  pageSize = 10;
+  pageIndex=0;
   first = 0;
-
   rows = 10;
-
-
-
 
   @Input() quantitesInputNumber: number[]=[];
 
-
-
-  constructor(private homeService : HomeService, private auth : AuthService) {
+  constructor(private homeService : HomeService) {
+    this.presentations = []
+    homeService.getListPresentationTot(this.pageSize,this.pageIndex).subscribe(
+        res =>{
+          this.dataSource = res;
+          this.length = res.totalElements!;
+          this.pageSize = res.size!;
+          this.pageIndex= res.number!;
+      }
 
   }
+
   ngOnInit(){
 
   }
-
 
   next() {
     this.first = this.first + this.rows;
   }
 
   pageChanged(event: PageEvent) {
-
+    this.pageSize=event.pageSize;
+    this.pageIndex=event.pageIndex;
+    this.updateData(event);
   }
 
   prev() {
@@ -79,6 +82,16 @@ export class HomeComponent implements OnInit {
       this.presentations = res
     }
     )
+  }
+
+  private updateData(event: PageEvent) {
+    this.homeService.getListPresentationTot(event.pageSize,event.pageIndex).subscribe(res => {
+      this.dataSource = res;
+      this.length = res.totalElements!;
+      this.pageSize = res.size!;
+      this.pageIndex= res.number!;
+    })
+
   }
 
 
