@@ -55,10 +55,6 @@ export class LoginComponent implements OnInit {
       this.emitLoggedIn()
     })
   }
-
-  reloadPage(): void {
-    window.location.reload();
-  }
   emitLoggedIn(){
     this.loggedChange.emit(this.isLoggedIn)
   }

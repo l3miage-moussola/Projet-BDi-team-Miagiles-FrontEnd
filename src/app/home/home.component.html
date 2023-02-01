@@ -1,13 +1,13 @@
 <app-search-bar (denomEvent)="search($event)"></app-search-bar>
 
-<mat-paginator [length]="100"
-               [pageSize]="10"
-               [pageSizeOptions]="[5, 10, 25, 100]"
+<mat-paginator [length]="length"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="pageSizeOptions"
                (page)="pageChanged($event)"
                aria-label="Select page">
 </mat-paginator>
-
-<mat-card class="example-card" *ngFor="let pres of presentations; let i = index">
+<div>
+<mat-card class="example-card" *ngFor="let pres of dataSource.content; let i = index">
   <mat-card-header *ngFor="let medicament of pres.medicaments">
     <mat-card-title>{{ medicament.denomination }}</mat-card-title>
     <mat-card-subtitle>{{ pres.codeCIP7 }}</mat-card-subtitle>
@@ -20,3 +20,4 @@
     <button mat-button>+ D'INFOS</button>
   </mat-card-actions>
 </mat-card>
+</div>

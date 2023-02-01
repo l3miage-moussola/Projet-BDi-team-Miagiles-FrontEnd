@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 
 import {Observable} from "rxjs";
 
@@ -18,6 +18,27 @@ export interface Presentation{
   medicaments : Medicament[]
 
   showAdd : boolean
+}
+
+export interface PagePresentation {
+  totalElements?: number;
+  totalPages?: number;
+  size?: number;
+  content?: Array<Presentation>;
+  number?: number;
+  first?: boolean;
+  last?: boolean;
+  numberOfElements?: number;
+  pageable?: PageableObject;
+  empty?: boolean;
+}
+
+export interface PageableObject {
+  offset?: number;
+  pageNumber?: number;
+  pageSize?: number;
+  paged?: boolean;
+  unpaged?: boolean;
 }
 
 export interface Commande{
@@ -56,7 +77,7 @@ export interface PresMed{
 })
 export class HomeService {
 
-  
+
 
   panier ! : Produit[]
 
@@ -70,11 +91,14 @@ export class HomeService {
     this.panier = []
     }
 
-  getListPresentationTot():Observable<Presentation[]> {
-    return this.http.get<Presentation[]>("/api/presentations/")
-
+  getListPresentationTot(pageSize:number, pageIndex:number):Observable<PagePresentation> {
+    let params = new HttpParams();
+    params.append('pageSize', pageSize)
+    params.append('page', pageIndex)
+    console.log(params)
+    return this.http.get<PagePresentation>("/api/presentations/",{params:{pageSize:pageSize,page:pageIndex}})
   }
-  
+
   // private presentationDeCommandeTest: PresentationDeCommande;
 
   getMeds() : Observable<Medicament[]>{
