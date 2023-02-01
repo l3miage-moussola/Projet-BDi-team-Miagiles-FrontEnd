@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {HomeService, Presentation} from "../_services/home.service";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {HomeService, Medicament, Presentation, PresMed, Produit} from "../_services/home.service";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -8,29 +8,40 @@ import {HomeService, Presentation} from "../_services/home.service";
 
 
 export class HomeComponent implements OnInit {
+
+
   control: any;
 
   presentations! : Presentation[]
+  medicaments ! : Medicament[]
+  presmeds !:PresMed[]
 
 
   first = 0;
 
   rows = 10;
+
+
+  
+
   @Input() quantitesInputNumber: number[]=[];
+
+
+
   constructor(private homeService : HomeService) {
     this.presentations = []
     homeService.getListPresentationTot().subscribe(
-
-      res =>{
-        this.presentations = res.slice(0,10)
+        res =>{
+        this.presentations = res
       }
 
     )
   }
   ngOnInit(){
 
-
   }
+
+
   next() {
     this.first = this.first + this.rows;
   }
@@ -49,5 +60,23 @@ export class HomeComponent implements OnInit {
 
   isFirstPage(): boolean {
     return this.presentations ? this.first === 0 : true;
+  }
+
+  showClick(presentation : Presentation) : void{
+   presentation.showAdd = true
+  }
+
+  addToCart(produit : Produit): void{
+    this.homeService.addToCart(produit)
+  }
+
+  search(denom : string) : void {
+    this.homeService.search(denom).subscribe( res =>{
+      this.presentations = res
+      res.forEach( e =>
+        console.log(e.medicaments)
+      )
+    }
+    )
   }
 }
