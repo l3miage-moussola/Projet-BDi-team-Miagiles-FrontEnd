@@ -17,12 +17,10 @@ export class PanierComponent implements OnInit{
 
 
   @Input() contenuPanier:any;
-  panier ! : Produit[];
 
-  constructor(private dialogRef : MatDialog, private homeService : HomeService) {
-    this.panier = this.homeService.panier;
-    //console.log(this.homeService.panier)
-    console.log(this.panier)
+  constructor(private dialogRef : MatDialog, public homeService : HomeService) {
+    console.log(this.homeService.panier)
+
 
   }
   ngOnInit(){
@@ -33,7 +31,7 @@ export class PanierComponent implements OnInit{
     }
   get totalPrice() {
     //modifier
-    return this.panier.reduce((total:number, item: Produit) => total + (item.presentation.prix * item.quantite), 0);
+    return this.homeService.panier.reduce((total:number, item: Produit) => total + (item.presentation.prix * item.quantite), 0);
   }
 
   validerPanier(): void{

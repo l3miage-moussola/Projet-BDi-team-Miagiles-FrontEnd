@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 
-import {Observable} from "rxjs";
+import {firstValueFrom, lastValueFrom, Observable} from "rxjs";
 
 export interface PresentationCommande {
   presentation : bigint,
@@ -20,10 +20,31 @@ export interface Presentation{
   showAdd : boolean
 }
 
+export interface PagePresentation {
+  totalElements?: number;
+  totalPages?: number;
+  size?: number;
+  content?: Array<Presentation>;
+  number?: number;
+  first?: boolean;
+  last?: boolean;
+  numberOfElements?: number;
+  pageable?: PageableObject;
+  empty?: boolean;
+}
+
+export interface PageableObject {
+  offset?: number;
+  pageNumber?: number;
+  pageSize?: number;
+  paged?: boolean;
+  unpaged?: boolean;
+}
+
 export interface Commande{
   numeroCommande : bigint,
   isType : boolean,
-  nom : string,
+  nomCmmande : string | null,
   etatCommande : string
 }
 
@@ -49,6 +70,13 @@ export interface PresMed{
 }
 
 
+export interface Utilisateur{
+  adresseMail : string
+  motDePasse : string
+  prenom : string
+}
+
+
 
 
 @Injectable({
@@ -56,11 +84,15 @@ export interface PresMed{
 })
 export class HomeService {
 
-  
+  userMail !: string
+
+  commandeObs ! : Observable<Commande>
+
+  commande! : Commande 
 
   panier ! : Produit[]
 
-  presentations! : Observable<Presentation[]>
+  presentations! : Presentation[]
 
   medicaments ! : Observable<Medicament[]>
   presmeds !: Observable<PresMed[]>
@@ -68,13 +100,17 @@ export class HomeService {
   constructor(private http: HttpClient) {
     // this.presentationDeCommandeTest=new PresentationDeCommande()
     this.panier = []
+
     }
 
-  getListPresentationTot():Observable<Presentation[]> {
-    return this.http.get<Presentation[]>("/api/presentations/")
-
+  getListPresentationTot(pageSize:number, pageIndex:number):Observable<PagePresentation> {
+    let params = new HttpParams();
+    params.append('pageSize', pageSize)
+    params.append('page', pageIndex)
+    console.log(params)
+    return this.http.get<PagePresentation>("/api/presentations/",{params:{pageSize:pageSize,page:pageIndex}})
   }
-  
+
   // private presentationDeCommandeTest: PresentationDeCommande;
 
   getMeds() : Observable<Medicament[]>{
@@ -88,23 +124,55 @@ export class HomeService {
 
 
 
-  addToCart(produit : Produit) {
-    // this.http.post<PresentationDeCommande>('/commandes/{user}/addToCart body',this.presentationDeCommandeTest)
-    // var existingItem = this.panier.find(i => i.codeCIP7 === item.codeCIP7);
-    // if (existingItem) {
-    //   //existingItem.nbAAjouter +=item.nbAAjouter;
-
-    // } else {
-    //   this.panier.push(item)
-    // }
-    // console.log(this.panier)
+  addToCart(produit : Produit, commande : Commande) {
     this.panier.push(produit);
+    this.http.post<PresentationDeCommande>("/api/commande_pres/addToCart", {presentationCommande : {presentation : produit.presentation.codeCIP7,
+                                                                                                    commande : commande.numeroCommande},
+                                                                            quantite : produit.quantite} ).subscribe( e => console.log(e))
 
   }
 
   search(denom : string) : Observable<Presentation[]>{
     return this.http.get<Presentation[]>("/api/presentations/meds/" + denom)
   }
+
+
+  async fillPanier(commande : Commande) : Promise<void>{
+    console.log("in promise")
+    
+    await firstValueFrom(this.http.get<PresentationDeCommande[]>('/api/commande_pres/')).then( e =>
+      {
+        e.forEach( compres => {
+          console.log(e)
+          if(compres.presentationCommande.commande==commande.numeroCommande){
+            let pres : Presentation
+            this.getPresentation(compres.presentationCommande.presentation).then( e => {
+              console.log(e)
+              this.panier.push({ 
+                presentation : e,
+                quantite : compres.quantite
+              })
+            })
+
+          }
+        })
+      })
+  }
+
+  async getPanier(adresseMail : string) : Promise<void>{
+    await lastValueFrom(this.http.get<Commande>('api/commandes/getPanier?userMail=' + adresseMail)).then(e => {
+      console.log(e)
+      this.commande = e
+    })
+    await this.fillPanier(this.commande)
+    
+  }
+
+  async getPresentation(codeCIP7 : bigint): Promise<Presentation>{
+    return await lastValueFrom(this.http.get<Presentation>('/api/presentations/' + codeCIP7))
+  }
+
+  
 
 
 }
