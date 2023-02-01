@@ -1,4 +1,4 @@
-<mat-toolbar *ngIf="isLoggedIn" class="header"> <!-- ajouter ça après *ngIf="isLoggedIn"-->
+<mat-toolbar class="header"> <!-- ajouter ça après *ngIf="isLoggedIn"-->
   <img src="assets/gromedLogo.svg" routerLink="home" [style.cursor]="'pointer'"/>
   <span class="flexeur"></span>
   <a href="/home" routerLink="home">Home </a>
@@ -9,7 +9,7 @@
     <mat-icon>logout</mat-icon>
   </button>
 </mat-toolbar>
-<app-login *ngIf="!isLoggedIn" (loggedChange)="getEvent($event)"></app-login>
+
 <div class="container">
   <router-outlet></router-outlet>
 </div>

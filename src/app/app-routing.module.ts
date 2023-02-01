@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'panier-valide', component: PanierValideComponent },
 
 
-  { path: '', redirectTo: 'home', pathMatch: 'full' }
+  { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({

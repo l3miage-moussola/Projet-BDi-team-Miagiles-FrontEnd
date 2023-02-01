@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HomeService, Medicament, Presentation, PresMed, Produit} from "../_services/home.service";
+import {PageEvent} from "@angular/material/paginator";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -12,9 +13,9 @@ export class HomeComponent implements OnInit {
 
   control: any;
 
-  presentations! : Presentation[]
-  medicaments ! : Medicament[]
-  presmeds !:PresMed[]
+  presentations! : Presentation[];
+  medicaments ! : Medicament[];
+  presmeds !:PresMed[];
 
 
   first = 0;
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit {
   rows = 10;
 
 
-  
+
 
   @Input() quantitesInputNumber: number[]=[];
 
@@ -44,6 +45,10 @@ export class HomeComponent implements OnInit {
 
   next() {
     this.first = this.first + this.rows;
+  }
+
+  pageChanged(event: PageEvent) {
+
   }
 
   prev() {
