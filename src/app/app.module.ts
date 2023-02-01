@@ -26,6 +26,7 @@ import { HomeService } from "./_services/home.service";
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { AddToCartButtonComponent } from './add-to-cart-button/add-to-cart-button.component';
 import { MaterialModule } from './material/material.module';
+import { ConfirmationValidationComponent } from './confirmation-validation/confirmation-validation.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MaterialModule } from './material/material.module';
     EnregistrementCommandeTypePopupComponent,
     PanierValideComponent,
     SearchBarComponent,
-    AddToCartButtonComponent
+    AddToCartButtonComponent,
+    ConfirmationValidationComponent
   ],
   imports: [
     BrowserModule,
