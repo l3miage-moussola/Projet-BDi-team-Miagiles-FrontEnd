@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   rows = 10;
 
 
-  
+
 
   @Input() quantitesInputNumber: number[]=[];
 
@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
     this.presentations = []
     homeService.getListPresentationTot().subscribe(
         res =>{
-        this.presentations = res
+        this.presentations = res.slice(0,10)
       }
 
     )
