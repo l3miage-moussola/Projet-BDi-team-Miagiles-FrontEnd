@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
+import {Observable} from "rxjs";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ValiderPanierService {
 
-  constructor() { }
+  constructor(private http: HttpClient)
+  {
+  }
 
-  validerPanier(userMail: string) {
-
+  validerPanier(userMail: string, isForced: boolean) : Observable<string>{
+    return this.http.get<string>('/api/commandes/validerPanier?userMail='+userMail)
   }
 }

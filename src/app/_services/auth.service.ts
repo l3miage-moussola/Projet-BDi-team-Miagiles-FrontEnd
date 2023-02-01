@@ -12,13 +12,25 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient) { }
+  private userMail: string;
+
+  constructor(private http: HttpClient) {
+    this.userMail='';
+  }
 
   login(username: string, password: string): Observable<any> {
     return this.http.post(AUTH_API + 'signin', {
       username,
       password
     }, httpOptions);
+  }
+  public setUserMail(userMail : string)
+  {
+    this.userMail = userMail;
+  }
+  public getUserMail() : string
+  {
+    return this.userMail;
   }
 
   register(username: string, email: string, password: string): Observable<any> {

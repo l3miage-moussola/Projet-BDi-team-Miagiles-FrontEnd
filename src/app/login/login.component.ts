@@ -37,6 +37,8 @@ export class LoginComponent implements OnInit {
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
+        this.authService.setUserMail(email);
+        //this.userMail=email;
         this.roles = this.tokenStorage.getUser().roles;
         this.reloadPage();
       },

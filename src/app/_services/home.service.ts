@@ -56,7 +56,7 @@ export interface PresMed{
 })
 export class HomeService {
 
-  
+
 
   panier ! : Produit[]
 
@@ -71,10 +71,10 @@ export class HomeService {
     }
 
   getListPresentationTot():Observable<Presentation[]> {
-    return this.http.get<Presentation[]>("/api/presentations/")
+    return this.http.get<Presentation[]>("http://129.88.210.58:8080/api/presentations/")
 
   }
-  
+
   // private presentationDeCommandeTest: PresentationDeCommande;
 
   getMeds() : Observable<Medicament[]>{

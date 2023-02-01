@@ -6,6 +6,7 @@ import {
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {ValiderPanierService} from "../_services/valider-panier.service";
+import {AuthService} from "../_services/auth.service";
 
 @Component({
   selector: 'app-confirmation-popup',
@@ -13,11 +14,14 @@ import {ValiderPanierService} from "../_services/valider-panier.service";
   styleUrls: ['./confirmation-popup.component.css']
 })
 export class ConfirmationPopupComponent {
-  private VALIDATION_PANIER_API = '/api/commandes/validerPanier?userMail=';
-  private resultatValidation: string;
 
-  constructor(private dialogRef : MatDialog, private http: HttpClient, private validationService : ValiderPanierService) {
-    this.resultatValidation='';
+  private resultatValidation: any;
+  private userMail: string;
+
+  constructor(private dialogRef : MatDialog, private http: HttpClient, private validationService : ValiderPanierService, authService: AuthService) {
+    this.resultatValidation=[];
+
+    this.userMail = authService.getUserMail();
   }
   openDialogEnregistrementCommandeType(){
     this.dialogRef.open(EnregistrementCommandeTypePopupComponent)
@@ -28,16 +32,13 @@ export class ConfirmationPopupComponent {
     this.openDialogEnregistrementCommandeType()
   }
 
-  public validerPanier() :void
+  public validerPanier(isForced:boolean) :void
   {
-
-
     this.dialogRef.closeAll();
-
-    this.validationService.validerPanier(userMail).subscribe(res=> this.resultatValidation = res);
-    if(this.resultatValidation.equals("Articles hors-stock"))//this.http.get(this.VALIDATION_PANIER_API + 'nom.prenom@mail.com') /* renvoie autre chose que 'Commande validée'*/
+    this.validationService.validerPanier(this.userMail, isForced).subscribe(res=> this.resultatValidation = res);
+    if(!this.resultatValidation.isEmpty())
     {
-      this.dialogRef.open(Component)
+      this.dialogRef.open(ConfirmationValidationComponent);
     }
 
 
