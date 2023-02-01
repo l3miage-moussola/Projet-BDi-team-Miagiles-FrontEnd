@@ -9,7 +9,7 @@ import { NgOptimizedImage } from '@angular/common'
 })
 export class AppComponent implements OnInit {
   private roles: string[] = [];
-  isLoggedIn = false;
+  isLoggedIn = true;
   showAdminBoard = false;
   showModeratorBoard = false;
   username?: string;

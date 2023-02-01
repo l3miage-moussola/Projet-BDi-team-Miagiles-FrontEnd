@@ -68,14 +68,12 @@ export class HomeComponent implements OnInit {
 
   addToCart(produit : Produit): void{
     this.homeService.addToCart(produit)
+    console.log(produit)
   }
 
   search(denom : string) : void {
     this.homeService.search(denom).subscribe( res =>{
       this.presentations = res
-      res.forEach( e =>
-        console.log(e.medicaments)
-      )
     }
     )
   }

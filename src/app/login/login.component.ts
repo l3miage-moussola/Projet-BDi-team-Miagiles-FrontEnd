@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
     email: null,
     password: null
   };
-  isLoggedIn = false;
+  isLoggedIn = true;
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];

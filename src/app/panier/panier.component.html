@@ -8,8 +8,9 @@
           <table class="table table-bordered">
             <thead class="thead-dark">
             <tr>
-              <th scope="col">Code CIP7</th>
+              
               <th scope="col">Libellé</th>
+              <th scope="col">Medicament</th>
               <th scope="col">Quantité</th>
               <th scope="col">Prix(€)</th>
 
@@ -17,8 +18,8 @@
             </thead>
             <tbody>
             <tr *ngFor="let item of panier">
-              <td>{{item.presentation.codeCIP7}}</td>
               <td>{{item.presentation.libelle}}</td>
+              <td *ngFor="let medicament of item.presentation.medicaments">{{medicament.denomination}}</td>
               <td>{{item.quantite}}</td>
               <td>{{item.presentation.prix}}</td>
 

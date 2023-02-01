@@ -31,7 +31,7 @@ addToCart(item:Presentation,quantity:number) {
    }
    this.produitEvent.emit(produit)
 
-   console.log(produit)
+  
 
 
   }
