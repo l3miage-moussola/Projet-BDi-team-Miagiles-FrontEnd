@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../_services/auth.service';
-import { TokenStorageService } from '../_services/token-storage.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../_services/auth.service';
+import {TokenStorageService} from '../_services/token-storage.service';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +11,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class LoginComponent implements OnInit {
   form: FormGroup = new FormGroup(
     {
-      "email":  new FormControl('', [Validators.required, Validators.email]),
+      "email": new FormControl('', [Validators.required, Validators.email]),
       "password": new FormControl('')
     }
   );
@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit {
   hide = true;
   roles: string[] = [];
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) {
+  }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
@@ -40,6 +41,8 @@ export class LoginComponent implements OnInit {
 
   getErrorMessage() {
     if (this.form.get("email")?.hasError('required')) {
+      return 'You must enter a value';
+    } else if (this.form.get("password")?.hasError('required')) {
       return 'You must enter a value';
     }
 

@@ -9,10 +9,10 @@
     <mat-icon>logout</mat-icon>
   </button>
 </mat-toolbar>
-<app-login *ngIf="isLoggedIn"></app-login>
-<app-home></app-home>
+<app-login ></app-login>
+<app-home *ngIf="isLoggedIn"></app-home>
 <div *ngIf="isLoggedIn" class="container" > <!-- ajouter ça après *ngIf="isLoggedIn"-->
-  
+
 </div>
 <footer class="footer">
   <span>© 2023 Gromed </span>
