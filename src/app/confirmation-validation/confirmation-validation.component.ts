@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {ValiderPanierService} from "../_services/valider-panier.service";
+import {AuthService} from "../_services/auth.service";
 
 @Component({
   selector: 'app-confirmation-validation',
@@ -7,4 +9,15 @@ import { Component } from '@angular/core';
 })
 export class ConfirmationValidationComponent {
 
+  constructor(private validerPanierService: ValiderPanierService, private authService :AuthService)
+  {
+  }
+
+  validerPanier(isForced: boolean) {
+    this.validerPanierService.validerPanier(this.authService.getUserMail(),isForced);
+  }
+
+  annulerPanier() {
+    this.validerPanierService.annulerPanier(this.authService.getUserMail());
+  }
 }

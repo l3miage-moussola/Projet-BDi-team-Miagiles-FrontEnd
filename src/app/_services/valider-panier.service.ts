@@ -12,6 +12,11 @@ export class ValiderPanierService {
   }
 
   validerPanier(userMail: string, isForced: boolean) : Observable<string>{
-    return this.http.get<string>('/api/commandes/validerPanier?userMail='+userMail)
+    return this.http.get<string>('/api/commandes/validerPanier?userMail='+userMail+'&isForced='+isForced)
+  }
+
+  annulerPanier(userMail: string) {
+    //@todo : methode du back qui annule le panier
+
   }
 }

@@ -15,7 +15,7 @@ export class AuthService {
   private userMail: string;
 
   constructor(private http: HttpClient) {
-    this.userMail='';
+    this.userMail='adam-iz@hotmail.fr';
   }
 
   login(username: string, password: string): Observable<any> {

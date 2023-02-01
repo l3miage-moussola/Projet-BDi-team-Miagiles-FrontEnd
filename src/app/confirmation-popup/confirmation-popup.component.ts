@@ -7,6 +7,7 @@ import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {ValiderPanierService} from "../_services/valider-panier.service";
 import {AuthService} from "../_services/auth.service";
+import {ConfirmationValidationComponent} from "../confirmation-validation/confirmation-validation.component";
 
 @Component({
   selector: 'app-confirmation-popup',
