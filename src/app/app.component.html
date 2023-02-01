@@ -9,7 +9,8 @@
     <mat-icon>logout</mat-icon>
   </button>
 </mat-toolbar>
-<app-login *ngIf="!isLoggedIn"></app-login>
+<app-login *ngIf="isLoggedIn"></app-login>
+<app-home></app-home>
 <div *ngIf="isLoggedIn" class="container" > <!-- ajouter ça après *ngIf="isLoggedIn"-->
   
 </div>
