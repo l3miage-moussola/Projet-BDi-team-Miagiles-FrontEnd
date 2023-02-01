@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
+import { Utilisateur } from './home.service';
 
 
 const httpOptions = {
@@ -11,9 +12,38 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient) { }
 
-  login(userMail:String,password:String): Observable<any> {
-    return this.http.get('/api/utilisateurs/findIfExistUtilisateur?adressMail='+userMail+"&mdp="+password);
+  userMail ! : string
+
+  isLoggedIN = false
+
+  constructor(private http: HttpClient) { 
+    
   }
+
+  async login(userMail:string,password:String): Promise<boolean> {
+    // console.log(userMail)
+    // let obsUti : Observable<boolean> =this.http.get<boolean>('/api/utilisateurs/findIfExistUtilisateur?adressMail='+userMail+"&mdp="+password);
+    //  obsUti.subscribe( e => {
+    //   if(e == true){
+    //     this.userMail = userMail 
+    //   }
+    //  })
+
+    return await lastValueFrom(this.http.get<boolean>('/api/utilisateurs/findIfExistUtilisateur?adressMail='+userMail+"&mdp="+password)).then( e => {
+      if(e == true){
+        this.userMail = userMail 
+      }
+      return e
+      }
+     )
+     
+  }
+
+
+  logout(): void {
+    window.location.reload();
+    this.isLoggedIN = false
+  }
+
 }

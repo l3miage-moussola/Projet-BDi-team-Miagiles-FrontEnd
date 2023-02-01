@@ -63,11 +63,15 @@ export interface Utilisateur{
 })
 export class HomeService {
 
-  commande ! : Observable<Commande>
+  userMail !: string
+
+  commandeObs ! : Observable<Commande>
+
+  commande! : Commande 
 
   panier ! : Produit[]
 
-  presentations! : Observable<Presentation[]>
+  presentations! : Presentation[]
 
   medicaments ! : Observable<Medicament[]>
   presmeds !: Observable<PresMed[]>
@@ -80,8 +84,10 @@ export class HomeService {
 
   
 
-  getListPresentationTot():Observable<Presentation[]> {
-    return this.http.get<Presentation[]>("/api/presentations/")
+  getListPresentationTot(): void {
+    this.http.get<Presentation[]>("/api/presentations/").subscribe( e => {
+      this.presentations = e
+    })
 
   }
   
@@ -142,8 +148,12 @@ export class HomeService {
       })
   }
 
-  async getPanier(adresseMail : string) : Promise<Commande>{
-    return await lastValueFrom(this.http.get<Commande>('api/commandes/getPanier?userMail=' + adresseMail))
+  async getPanier(adresseMail : string) : Promise<void>{
+    await lastValueFrom(this.http.get<Commande>('api/commandes/getPanier?userMail=' + adresseMail)).then(e => {
+      console.log(e)
+      this.commande = e
+    })
+    await this.fillPanier(this.commande)
   }
 
   async getPresentation(codeCIP7 : bigint): Promise<Presentation>{

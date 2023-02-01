@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { HomeService } from '../_services/home.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
   @Output() loggedChange : EventEmitter<boolean> = new EventEmitter<boolean>();
   hide = true;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private hs : HomeService) {
   }
 
   ngOnInit(): void {
@@ -44,16 +45,23 @@ export class LoginComponent implements OnInit {
     return this.form.get("email")?.hasError('email') ? 'Not a valid email' : '';
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     let email = this.form.get("email")?.value;
     let password = this.form.get("password")?.value;
 
-    this.authService.login(email,password).subscribe(data=>{
-      this.isLoggedIn = data
-      console.log("data "+data)
-      console.log("isLoggedIn ",this.isLoggedIn)
-      this.emitLoggedIn()
+    console.log("avant promesse")
+    await this.authService.login(email,password).then(data=>{
+      if(data){
+        this.hs.userMail = email
+        console.log("data "+data)
+        console.log("isLoggedIn ",this.isLoggedIn)
+        this.emitLoggedIn()
+      }
     })
+    this.hs.getPanier(email)
+
+
+    
   }
 
   reloadPage(): void {
