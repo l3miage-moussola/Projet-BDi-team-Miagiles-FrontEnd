@@ -9,14 +9,11 @@ import {PageEvent} from "@angular/material/paginator";
 
 
 export class HomeComponent implements OnInit {
-  dataSource:PagePresentation = {content:[],totalElements:0  };  userMail! : string
+  dataSource:PagePresentation = { content:[], totalElements:0 };
+  userMail! : string
 
   commande!: Commande
-
-  control: any;
   presentations! : Presentation[];
-  medicaments ! : Medicament[];
-  presmeds !:PresMed[];
   pageSizeOptions = [5, 10, 25, 100];
   length=10;
   pageSize = 10;
@@ -35,37 +32,16 @@ export class HomeComponent implements OnInit {
           this.pageSize = res.size!;
           this.pageIndex= res.number!;
       })
-
   }
 
   ngOnInit(){
 
   }
 
-  next() {
-    this.first = this.first + this.rows;
-  }
-
   pageChanged(event: PageEvent) {
     this.pageSize=event.pageSize;
     this.pageIndex=event.pageIndex;
     this.updateData(event);
-  }
-
-  prev() {
-    this.first = this.first - this.rows;
-  }
-
-  reset() {
-    this.first = 0;
-  }
-
-  isLastPage(): boolean {
-    return this.presentations ? this.first === (this.presentations.length - this.rows): true;
-  }
-
-  isFirstPage(): boolean {
-    return this.presentations ? this.first === 0 : true;
   }
 
   showClick(presentation : Presentation) : void{
@@ -104,6 +80,6 @@ export class HomeComponent implements OnInit {
 
   // async fillPanier() : Promise<void>{
   //   await this.homeService.fillPanier(this.commande)
-    
+
   // }
 }

@@ -1,13 +1,11 @@
 .test {
   display: flex;
-  justify-content: space-evenly;
-}
-
-p-button.p-element {
-  width: 100px;
-  height: 100px;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .example-card {
   max-width: 400px;
+  background-color: aliceblue;
+  margin: 15px;
 }
