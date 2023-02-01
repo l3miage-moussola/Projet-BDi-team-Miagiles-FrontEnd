@@ -1,3 +1,8 @@
+<mat-toolbar *ngIf="isLoggedIn" class="header"> <!-- ajouter Ã§a aprÃ¨s *ngIf="isLoggedIn"-->
+  <img src="assets/gromedLogo.svg" routerLink="home" [style.cursor]="'pointer'"/>
+  <span class="flexeur"></span>
+  <a href="/home" routerLink="home">Home </a>
+  <button mat-icon-button href="/panier" routerLink="panier">
     <mat-icon>shopping_cart</mat-icon>
   </button>
   <button mat-icon-button (click)="logout()">
@@ -5,9 +10,9 @@
   </button>
 </mat-toolbar>
 <app-login *ngIf="!isLoggedIn" (loggedChange)="getEvent($event)"></app-login>
-<div *ngIf="isLoggedIn" class="container" > <!-- ajouter ça après *ngIf="isLoggedIn"-->
-
+<div class="container">
+  <router-outlet></router-outlet>
 </div>
 <footer class="footer">
-  <span>© 2023 Gromed </span>
+  <span>Â© 2023 Gromed </span>
 </footer>

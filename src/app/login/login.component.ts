@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -11,17 +11,19 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class LoginComponent implements OnInit {
   form: FormGroup = new FormGroup(
     {
-      "email":  new FormControl('', [Validators.required, Validators.email]),
-      "password": new FormControl('')
+      "email": new FormControl('', [Validators.required, Validators.email]),
+      "password": new FormControl('', [Validators.required])
     }
   );
-  isLoggedIn = true;
-  @Output() loggedChange : EventEmitter<boolean> = new EventEmitter<boolean>()
+  isLoggedIn = false;
+  @Output() loggedChange : EventEmitter<boolean> = new EventEmitter<boolean>();
   hide = true;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {
+  }
 
   ngOnInit(): void {
+
   }
 
   get email() {
@@ -34,6 +36,8 @@ export class LoginComponent implements OnInit {
 
   getErrorMessage() {
     if (this.form.get("email")?.hasError('required')) {
+      return 'You must enter a value';
+    } else if (this.form.get("password")?.hasError('required')) {
       return 'You must enter a value';
     }
 
@@ -48,18 +52,14 @@ export class LoginComponent implements OnInit {
       this.isLoggedIn = data
       console.log("data "+data)
       console.log("isLoggedIn ",this.isLoggedIn)
-      this.emitLogeedIn()
+      this.emitLoggedIn()
     })
-    //err => {
-      //this.errorMessage = err.error.message;
-      //this.isLoginFailed = true;
-    //}
   }
 
   reloadPage(): void {
     window.location.reload();
   }
-  emitLogeedIn(){
+  emitLoggedIn(){
     this.loggedChange.emit(this.isLoggedIn)
   }
 }
