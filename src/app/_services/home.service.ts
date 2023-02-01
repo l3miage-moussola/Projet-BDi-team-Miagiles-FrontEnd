@@ -88,9 +88,9 @@ export class HomeService {
 
   commandeObs ! : Observable<Commande>
 
-  commande! : Commande 
+  commande! : Commande
 
-  panier ! : Produit[]
+  panier : Produit[] = []
 
   presentations! : Presentation[]
 
@@ -99,8 +99,6 @@ export class HomeService {
 
   constructor(private http: HttpClient) {
     // this.presentationDeCommandeTest=new PresentationDeCommande()
-    this.panier = []
-
     }
 
   getListPresentationTot(pageSize:number, pageIndex:number):Observable<PagePresentation> {
@@ -139,7 +137,7 @@ export class HomeService {
 
   async fillPanier(commande : Commande) : Promise<void>{
     console.log("in promise")
-    
+
     await firstValueFrom(this.http.get<PresentationDeCommande[]>('/api/commande_pres/')).then( e =>
       {
         e.forEach( compres => {
@@ -148,7 +146,7 @@ export class HomeService {
             let pres : Presentation
             this.getPresentation(compres.presentationCommande.presentation).then( e => {
               console.log(e)
-              this.panier.push({ 
+              this.panier.push({
                 presentation : e,
                 quantite : compres.quantite
               })
@@ -165,14 +163,14 @@ export class HomeService {
       this.commande = e
     })
     await this.fillPanier(this.commande)
-    
+
   }
 
   async getPresentation(codeCIP7 : bigint): Promise<Presentation>{
     return await lastValueFrom(this.http.get<Presentation>('/api/presentations/' + codeCIP7))
   }
 
-  
+
 
 
 }

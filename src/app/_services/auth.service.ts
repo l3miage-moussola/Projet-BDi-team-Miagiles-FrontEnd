@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { lastValueFrom, Observable } from 'rxjs';
 import { Utilisateur } from './home.service';
+import {Router} from "@angular/router";
 
 
 const httpOptions = {
@@ -17,8 +18,8 @@ export class AuthService {
 
   isLoggedIN = false
 
-  constructor(private http: HttpClient) { 
-    
+  constructor(private http: HttpClient, private router : Router) {
+
   }
 
   async login(userMail:string,password:String): Promise<boolean> {
@@ -26,24 +27,35 @@ export class AuthService {
     // let obsUti : Observable<boolean> =this.http.get<boolean>('/api/utilisateurs/findIfExistUtilisateur?adressMail='+userMail+"&mdp="+password);
     //  obsUti.subscribe( e => {
     //   if(e == true){
-    //     this.userMail = userMail 
+    //     this.userMail = userMail
     //   }
     //  })
 
     return await lastValueFrom(this.http.get<boolean>('/api/utilisateurs/findIfExistUtilisateur?adressMail='+userMail+"&mdp="+password)).then( e => {
       if(e == true){
-        this.userMail = userMail 
+        this.userMail = userMail
       }
       return e
       }
      )
-     
+
   }
 
 
   logout(): void {
-    window.location.reload();
     this.isLoggedIN = false
+    this.changeRoute("")
+  }
+
+  setUserMail(userMail:string){
+    this.userMail =userMail
+  }
+
+  changeRoute(route:string,){
+
+      this.router.navigate([route])
+
+
   }
 
 }

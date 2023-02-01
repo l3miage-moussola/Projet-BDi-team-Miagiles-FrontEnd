@@ -3,6 +3,7 @@ import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HomeService } from '../_services/home.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   @Output() loggedChange : EventEmitter<boolean> = new EventEmitter<boolean>();
   hide = true;
 
-  constructor(private authService: AuthService, private hs : HomeService) {
+  constructor(private authService: AuthService, private hs : HomeService ) {
   }
 
   ngOnInit(): void {
@@ -51,19 +52,18 @@ export class LoginComponent implements OnInit {
 
     console.log("avant promesse")
     await this.authService.login(email,password).then(data=>{
-      if(data){
-        this.hs.userMail = email
-        console.log("data "+data)
-        console.log("isLoggedIn ",this.isLoggedIn)
-        this.emitLoggedIn()
-      }
+        this.isLoggedIn = data
+      console.log("data "+data)
+      console.log("isLoggedIn ",this.isLoggedIn)
     })
-    this.hs.getPanier(email)
+    //this.hs.getPanier(email)
+    if(this.isLoggedIn){
+      this.authService.changeRoute("/home")
+    }
 
 
-    
+
+
   }
-  emitLoggedIn(){
-    this.loggedChange.emit(this.isLoggedIn)
-  }
+
 }

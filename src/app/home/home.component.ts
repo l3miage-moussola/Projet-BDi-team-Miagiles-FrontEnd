@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Commande, HomeService, Medicament, PagePresentation, Presentation, PresMed, Produit} from "../_services/home.service";
 import {PageEvent} from "@angular/material/paginator";
+import {AuthService} from "../_services/auth.service";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -23,7 +24,7 @@ export class HomeComponent implements OnInit {
 
   @Input() quantitesInputNumber: number[]=[];
 
-  constructor(private homeService : HomeService) {
+  constructor(private homeService : HomeService , private authService : AuthService) {
     this.presentations = []
     homeService.getListPresentationTot(this.pageSize,this.pageIndex).subscribe(
         res =>{
@@ -35,7 +36,9 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(){
-
+    this.homeService.getPanier(this.authService.userMail)
+    console.log(this.authService.userMail)
+    console.log("panier"+ this.homeService.getPanier(this.authService.userMail))
   }
 
   pageChanged(event: PageEvent) {

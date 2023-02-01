@@ -14,11 +14,11 @@ export class AppComponent {
   username?: string;
 
 
-  constructor(private tokenStorageService: TokenStorageService, private auth : AuthService) {
+  constructor( private auth : AuthService) {
   }
 
   logout(): void {
-    window.location.reload();
+    this.auth.logout()
   }
 
   getEvent(val : boolean){
