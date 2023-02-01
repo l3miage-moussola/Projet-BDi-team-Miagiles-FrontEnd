@@ -29,6 +29,8 @@ addToCart(item:Presentation,quantity:number) {
     quantite : quantity
 
    }
+   
+
    this.produitEvent.emit(produit)
 
   

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 
-import {Observable} from "rxjs";
+import {firstValueFrom, lastValueFrom, Observable} from "rxjs";
 
 export interface PresentationCommande {
   presentation : bigint,
@@ -23,7 +23,7 @@ export interface Presentation{
 export interface Commande{
   numeroCommande : bigint,
   isType : boolean,
-  nom : string,
+  nomCmmande : string | null,
   etatCommande : string
 }
 
@@ -49,6 +49,13 @@ export interface PresMed{
 }
 
 
+export interface Utilisateur{
+  adresseMail : string
+  motDePasse : string
+  prenom : string
+}
+
+
 
 
 @Injectable({
@@ -56,7 +63,7 @@ export interface PresMed{
 })
 export class HomeService {
 
-  
+  commande ! : Observable<Commande>
 
   panier ! : Produit[]
 
@@ -68,7 +75,10 @@ export class HomeService {
   constructor(private http: HttpClient) {
     // this.presentationDeCommandeTest=new PresentationDeCommande()
     this.panier = []
+
     }
+
+  
 
   getListPresentationTot():Observable<Presentation[]> {
     return this.http.get<Presentation[]>("/api/presentations/")
@@ -88,7 +98,7 @@ export class HomeService {
 
 
 
-  addToCart(produit : Produit) {
+  addToCart(produit : Produit, commande : Commande) {
     // this.http.post<PresentationDeCommande>('/commandes/{user}/addToCart body',this.presentationDeCommandeTest)
     // var existingItem = this.panier.find(i => i.codeCIP7 === item.codeCIP7);
     // if (existingItem) {
@@ -99,12 +109,48 @@ export class HomeService {
     // }
     // console.log(this.panier)
     this.panier.push(produit);
+    this.http.post<PresentationDeCommande>("/api/commande_pres/addToCart", {presentationCommande : {presentation : produit.presentation.codeCIP7,
+                                                                                                    commande : commande.numeroCommande},
+                                                                            quantite : produit.quantite} ).subscribe( e => console.log(e))
 
   }
 
   search(denom : string) : Observable<Presentation[]>{
     return this.http.get<Presentation[]>("/api/presentations/meds/" + denom)
   }
+
+
+  async fillPanier(commande : Commande) : Promise<void>{
+    console.log("in promise")
+    
+    await firstValueFrom(this.http.get<PresentationDeCommande[]>('/api/commande_pres/')).then( e =>
+      {
+        e.forEach( compres => {
+          console.log(e)
+          if(compres.presentationCommande.commande==commande.numeroCommande){
+            let pres : Presentation
+            this.getPresentation(compres.presentationCommande.presentation).then( e => {
+              //console.log(e)
+              this.panier.push({ 
+                presentation : e,
+                quantite : compres.quantite
+              })
+            })
+
+          }
+        })
+      })
+  }
+
+  async getPanier(adresseMail : string) : Promise<Commande>{
+    return await lastValueFrom(this.http.get<Commande>('api/commandes/getPanier?userMail=' + adresseMail))
+  }
+
+  async getPresentation(codeCIP7 : bigint): Promise<Presentation>{
+    return await lastValueFrom(this.http.get<Presentation>('/api/presentations/' + codeCIP7))
+  }
+
+  
 
 
 }
