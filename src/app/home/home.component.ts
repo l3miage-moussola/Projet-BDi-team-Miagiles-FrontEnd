@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {HomeService, Medicament, PagePresentation, Presentation, PresMed, Produit} from "../_services/home.service";
+import {Commande, HomeService, Medicament, PagePresentation, Presentation, PresMed, Produit} from "../_services/home.service";
 import {PageEvent} from "@angular/material/paginator";
 @Component({
   selector: 'app-home',
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
           this.length = res.totalElements!;
           this.pageSize = res.size!;
           this.pageIndex= res.number!;
-      }
+      })
 
   }
 

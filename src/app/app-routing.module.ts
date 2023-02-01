@@ -10,7 +10,7 @@ import {PanierValideComponent} from "./panier-valide/panier-valide.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
+  { path: '', component: LoginComponent },
   { path: 'panier', component: PanierComponent },
   { path: 'panier-valide', component: PanierValideComponent },
 ];
