@@ -19,7 +19,7 @@ export class PanierComponent implements OnInit{
   @Input() contenuPanier:any;
 
   constructor(private dialogRef : MatDialog, public homeService : HomeService) {
-    //console.log(this.homeService.panier)
+    console.log(this.homeService.panier)
 
 
   }

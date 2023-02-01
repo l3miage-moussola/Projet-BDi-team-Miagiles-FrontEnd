@@ -105,15 +105,6 @@ export class HomeService {
 
 
   addToCart(produit : Produit, commande : Commande) {
-    // this.http.post<PresentationDeCommande>('/commandes/{user}/addToCart body',this.presentationDeCommandeTest)
-    // var existingItem = this.panier.find(i => i.codeCIP7 === item.codeCIP7);
-    // if (existingItem) {
-    //   //existingItem.nbAAjouter +=item.nbAAjouter;
-
-    // } else {
-    //   this.panier.push(item)
-    // }
-    // console.log(this.panier)
     this.panier.push(produit);
     this.http.post<PresentationDeCommande>("/api/commande_pres/addToCart", {presentationCommande : {presentation : produit.presentation.codeCIP7,
                                                                                                     commande : commande.numeroCommande},
@@ -136,7 +127,7 @@ export class HomeService {
           if(compres.presentationCommande.commande==commande.numeroCommande){
             let pres : Presentation
             this.getPresentation(compres.presentationCommande.presentation).then( e => {
-              //console.log(e)
+              console.log(e)
               this.panier.push({ 
                 presentation : e,
                 quantite : compres.quantite
@@ -154,6 +145,7 @@ export class HomeService {
       this.commande = e
     })
     await this.fillPanier(this.commande)
+    
   }
 
   async getPresentation(codeCIP7 : bigint): Promise<Presentation>{
