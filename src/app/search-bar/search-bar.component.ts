@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {map, Observable, startWith} from "rxjs";
 import {FormControl} from "@angular/forms";
 
@@ -8,6 +8,11 @@ import {FormControl} from "@angular/forms";
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent implements OnInit{
+
+  denomination = ''
+
+  @Output() denomEvent = new EventEmitter<string>;
+
   constructor() {
 
   }
@@ -30,6 +35,11 @@ export class SearchBarComponent implements OnInit{
   }
   private _normalizeValue(value: string): string {
     return value.toLowerCase().replace(/\s/g, '');
+  }
+
+
+  sendDenom() : void{
+    this.denomEvent.emit(this.denomination)
   }
 
 }

@@ -9,7 +9,7 @@ import { NgOptimizedImage } from '@angular/common'
 })
 export class AppComponent implements OnInit {
   private roles: string[] = [];
-  isLoggedIn = false;
+  isLoggedIn = true;
   showAdminBoard = false;
   showModeratorBoard = false;
   username?: string;
@@ -23,9 +23,6 @@ export class AppComponent implements OnInit {
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
-
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
 
       this.username = user.username;
     }

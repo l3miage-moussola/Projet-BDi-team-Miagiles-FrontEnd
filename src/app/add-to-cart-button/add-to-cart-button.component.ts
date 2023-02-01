@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import {HomeService, Presentation, PresentationPanier} from "../_services/home.service";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {HomeService, Presentation, Produit} from "../_services/home.service";
 
 
 @Component({
@@ -12,16 +12,28 @@ export class AddToCartButtonComponent {
   constructor(private homeService: HomeService){
 
       }
-  @Input() indexOfAddToCartButton: number| undefined;
-  @Input() quantity: number=-1;
-  @Input() presentationCart: any | undefined;
-  presentations! : Presentation[]
+  @Input() show = false
+  //@Input() indexOfAddToCartButton: number| undefined;
+  //@Input() presentationCart: any | undefined;
+  @Input() presentation ! : Presentation
+
+  @Output() produitEvent = new EventEmitter<Produit>;
+
+  quantite! : number;
 
 
 addToCart(item:Presentation,quantity:number) {
-    this.homeService.addToCart(new PresentationPanier(item,quantity) )
+   //this.homeService.addToCart(new PresentationPanier(item,quantity) )
+   let produit : Produit = {
+    presentation : item,
+    quantite : quantity
+
+   }
+   this.produitEvent.emit(produit)
+
+  
+
 
   }
-
 
 }

@@ -3,70 +3,107 @@ import {HttpClient} from "@angular/common/http";
 
 import {Observable} from "rxjs";
 
+export interface PresentationCommande {
+  presentation : bigint,
+  commande : bigint
+}
+
 export interface Presentation{
   codeCIP7 : number
   libelle : string
-
-  medicaments : string[]
   prix : number
   stockLogique : number
   stockPhysique : number
-}
-export interface Panier{
-  presentations: PresentationPanier[]
-}export class PresentationPanier{
-  constructor(item:Presentation,quantity:number) {
-    this.codeCIP7=item.codeCIP7
-    this.libelle=item.libelle
-    this.prix=item.prix
-    this.stockLogique=item.stockLogique
-    this.nbAAjouter=quantity
-  }
-  codeCIP7 !: number
-  libelle !: string
-  prix !: number
-  stockLogique !: number
-  nbAAjouter!: number
 
+  medicaments : Medicament[]
+
+  showAdd : boolean
 }
+
+export interface Commande{
+  numeroCommande : bigint,
+  isType : boolean,
+  nom : string,
+  etatCommande : string
+}
+
+export interface PresentationDeCommande{
+  presentationCommande : PresentationCommande,
+  quantite : number
+}
+
+
+export interface Produit{
+  presentation: Presentation,
+  quantite : number
+}
+
+export interface Medicament{
+  codeCIS : bigint
+  denomination : string
+}
+
+export interface PresMed{
+  codeCIP7 : bigint
+  codeCIS : bigint
+}
+
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService {
-  constructor(private http: HttpClient) {
-    /*this.panier= [
-      { CIP7: 100922, libelle: 'Doliprane',quantity: 2, price: 45.99 },
-      { CIP7: 100992, libelle: 'Tramadol',quantity: 6, price: 29.99 },
-      { CIP7: 103622, libelle: 'Boite de jsp quoi', quantity: 1, price: 19.99 }
-    ];*/
-  }
 
+  
+
+  panier ! : Produit[]
 
   presentations! : Observable<Presentation[]>
 
+  medicaments ! : Observable<Medicament[]>
+  presmeds !: Observable<PresMed[]>
+
+  constructor(private http: HttpClient) {
+    // this.presentationDeCommandeTest=new PresentationDeCommande()
+    this.panier = []
+    }
 
   getListPresentationTot():Observable<Presentation[]> {
     return this.http.get<Presentation[]>("/api/presentations/")
 
   }
-  panier:PresentationPanier[]=[];
+  
+  // private presentationDeCommandeTest: PresentationDeCommande;
+
+  getMeds() : Observable<Medicament[]>{
+    return this.http.get<Medicament[]>("/api/meds/")
+  }
+
+  getPresMeds() : Observable<PresMed[]>{
+    return this.http.get<PresMed[]>("/api/meds/")
+  }
 
 
 
 
+  addToCart(produit : Produit) {
+    // this.http.post<PresentationDeCommande>('/commandes/{user}/addToCart body',this.presentationDeCommandeTest)
+    // var existingItem = this.panier.find(i => i.codeCIP7 === item.codeCIP7);
+    // if (existingItem) {
+    //   //existingItem.nbAAjouter +=item.nbAAjouter;
 
+    // } else {
+    //   this.panier.push(item)
+    // }
+    // console.log(this.panier)
+    this.panier.push(produit);
 
-  addToCart(item: PresentationPanier) {
-    var existingItem = this.panier.find(i => i.codeCIP7 === item.codeCIP7);
-    if (existingItem) {
-      existingItem.nbAAjouter +=item.nbAAjouter;
+  }
 
-    } else {
-      this.panier.push(item)
-    }
-    console.log(this.panier)
-
+  search(denom : string) : Observable<Presentation[]>{
+    return this.http.get<Presentation[]>("/api/presentations/meds/" + denom)
   }
 
 

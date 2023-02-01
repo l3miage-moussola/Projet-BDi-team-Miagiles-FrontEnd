@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
       "password": new FormControl('')
     }
   );
-  isLoggedIn = false;
+  isLoggedIn = true;
   @Output() loggedChange : EventEmitter<boolean> = new EventEmitter<boolean>()
   hide = true;
 

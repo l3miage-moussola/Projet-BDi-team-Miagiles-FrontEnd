@@ -31,43 +31,28 @@ import { MatOptionModule } from "@angular/material/core";
 import { MatSelectModule } from "@angular/material/select";
 import { MatAutocompleteModule} from "@angular/material/autocomplete";
 import {FlexModule} from "@angular/flex-layout";
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    HomeComponent,
-    CardComponent,
-    PanierComponent,
-    ConfirmationPopupComponent,
-    EnregistrementCommandeTypePopupComponent,
-    PanierValideComponent,
-    SearchBarComponent,
-    AddToCartButtonComponent
-  ],
-    imports: [
-        BrowserModule,
-        NoopAnimationsModule,
-        AppRoutingModule,
-        FormsModule,
-        MatInputModule,
-        HttpClientModule,
-        MatCardModule,
-        MatIconModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatDialogModule,
-        MatOptionModule,
-        MatSelectModule,
-        MatAutocompleteModule,
-        ReactiveFormsModule,
-        FlexModule
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        HomeComponent,
+        CardComponent,
+        PanierComponent,
+        ConfirmationPopupComponent,
+        EnregistrementCommandeTypePopupComponent,
+        PanierValideComponent,
+        SearchBarComponent,
+        AddToCartButtonComponent
     ],
-  providers: [
-    authInterceptorProviders,
-    HomeService
-  ],
-  bootstrap: [AppComponent]
+    providers: [
+        authInterceptorProviders,
+        HomeService
+    ],
+    imports: [
+        FormsModule
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

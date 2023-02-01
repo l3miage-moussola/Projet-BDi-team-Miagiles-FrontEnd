@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmationPopupComponent} from "../confirmation-popup/confirmation-popup.component";
-import {HomeService, PresentationPanier} from "../_services/home.service";
+import {HomeService, Presentation, Produit} from "../_services/home.service";
 
 
 
@@ -17,22 +17,23 @@ export class PanierComponent implements OnInit{
 
 
   @Input() contenuPanier:any;
-  panier : PresentationPanier[];
+  panier ! : Produit[];
 
   constructor(private dialogRef : MatDialog, private homeService : HomeService) {
     this.panier = this.homeService.panier;
-    console.log(this.homeService.panier)
+    //console.log(this.homeService.panier)
     console.log(this.panier)
 
   }
   ngOnInit(){
-    this.panier = this.homeService.panier;
+    //this.panier = this.homeService.panier;
   }
     openDialog(){
       this.dialogRef.open(ConfirmationPopupComponent)
     }
   get totalPrice() {
-    return this.panier.reduce((total:number, item:PresentationPanier) => total + (item.prix * item.nbAAjouter), 0);
+    //modifier
+    return this.panier.reduce((total:number, item: Produit) => total + (item.presentation.prix * item.quantite), 0);
   }
 
   validerPanier(): void{
