@@ -36,6 +36,7 @@ export class AuthService {
         if (e == true) {
           this.userMail = userMail
           this.isLoggedIN = true;
+          console.log("set local storage")
           localStorage.setItem("userMail", userMail)
           localStorage.setItem("login", "true")
         }
@@ -60,6 +61,9 @@ export class AuthService {
   logout(): void {
     this.isLoggedIN = false
     this.changeRoute("")
+    localStorage.removeItem("userMail")
+    localStorage.removeItem("login")
+    console.log("log out")
   }
 
   setUserMail(userMail: string) {

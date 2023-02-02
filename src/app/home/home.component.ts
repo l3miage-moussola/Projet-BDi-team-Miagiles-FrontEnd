@@ -38,7 +38,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(){
-
     if(!this.authService.isLoggedIN){
       let login = localStorage.getItem("login")
         if(login=="true"){
@@ -67,7 +66,7 @@ export class HomeComponent implements OnInit {
 
   search(denom : string) : void {
     this.homeService.search(denom).subscribe( res =>{
-      this.presentations = res
+      this.dataSource.content = res
     }
     )
   }

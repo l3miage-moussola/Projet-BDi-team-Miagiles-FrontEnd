@@ -56,12 +56,11 @@ export class LoginComponent implements OnInit {
       console.log("data "+data)
       console.log("isLoggedIn ",this.isLoggedIn)
     })
-    //this.hs.getPanier(email)
+
+    this.hs.getPanier(email)
     if(this.isLoggedIn){
       this.authService.changeRoute("/home")
     }
-
-
 
 
   }
