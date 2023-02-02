@@ -39,7 +39,16 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(){
 
-    this.homeService.getPanier(this.authService.userMail)
+    if(!this.authService.isLoggedIN){
+      let login = localStorage.getItem("login")
+        if(login=="true"){
+          this.authService.isLoggedIN = true
+        }
+        let userMail = localStorage.getItem("userMail")
+        if(userMail != null){
+          this.homeService.getPanier(userMail)
+        }
+    }
   }
 
   pageChanged(event: PageEvent) {

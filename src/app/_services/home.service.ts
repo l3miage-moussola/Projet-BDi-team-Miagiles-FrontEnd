@@ -155,6 +155,8 @@ export class HomeService {
           }
         })
       })
+
+      
   }
 
   async getPanier(adresseMail : string) : Promise<void>{

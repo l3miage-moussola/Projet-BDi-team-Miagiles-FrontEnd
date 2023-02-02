@@ -36,6 +36,8 @@ export class AuthService {
         if (e == true) {
           this.userMail = userMail
           this.isLoggedIN = true;
+          localStorage.setItem("userMail", userMail)
+          localStorage.setItem("login", "true")
         }
         return e
       }

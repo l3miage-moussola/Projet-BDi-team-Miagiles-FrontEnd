@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmationPopupComponent} from "../confirmation-popup/confirmation-popup.component";
+import { AuthService } from '../_services/auth.service';
 import {HomeService, Presentation, Produit} from "../_services/home.service";
 
 @Component({
@@ -13,12 +14,22 @@ export class PanierComponent implements OnInit {
 
   @Input() contenuPanier: any;
 
-  constructor(private dialogRef: MatDialog, public homeService: HomeService) {
+  constructor(private dialogRef: MatDialog, public homeService: HomeService, private auth : AuthService) {
     console.log(this.homeService.panier)
   }
 
   ngOnInit() {
+    let login = localStorage.getItem("login")
+    if(login=="true"){
+      this.auth.isLoggedIN = true
+    }
+      
+      let userMail = localStorage.getItem("userMail")
+    if(userMail != null){
+      this.homeService.getPanier(userMail)
+    }
 
+    
   }
 
   openDialog() {

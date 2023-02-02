@@ -10,18 +10,16 @@ import { AuthService } from './_services/auth.service';
 })
 export class AppComponent {
   private roles: string[] = [];
-  isLoggedIn = false;
+
   username?: string;
 
 
-  constructor( private auth : AuthService) {
+  constructor( public auth : AuthService) {
   }
 
   logout(): void {
     this.auth.logout()
   }
 
-  getEvent(val : boolean){
-    this.isLoggedIn = val
-  }
+
 }
