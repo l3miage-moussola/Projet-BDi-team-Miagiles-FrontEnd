@@ -30,7 +30,6 @@ export class AddToCartButtonComponent {
       presentation: item,
       quantite: quantity
     }
-
     this.produitEvent.emit(produit);
   }
 }

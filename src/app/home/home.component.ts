@@ -61,8 +61,13 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  openDialog() {
-    this.dialog.open(AddToCartButtonComponent);
+  openDialog(pres : Presentation) {
+    let dialog = this.dialog.open(AddToCartButtonComponent);
+    let instance = dialog.componentInstance
+    instance.presentation = pres
+    instance.produitEvent.subscribe( e => {
+      this.addToCart(e)
+    })
   }
 
   pageChanged(event: PageEvent) {
@@ -76,6 +81,7 @@ export class HomeComponent implements OnInit {
   }
 
   addToCart(produit: Produit): void {
+    console.log(produit)
     this.homeService.addToCart(produit, this.homeService.commande.numeroCommande)
   }
 
