@@ -42,7 +42,6 @@ export class AddToCartButtonComponent {
       presentation: item,
       quantite: quantity
     }
-
     this.produitEvent.emit(produit);
 
     this.openSnackBar("Produit ajouté avec succès !", "OK");
