@@ -28,6 +28,7 @@ export class PanierComponent implements OnInit {
       let userMail = localStorage.getItem("userMail")
       console.log(userMail)
       if(userMail != null){
+        this.auth.setUserMail(userMail)
         this.homeService.getPanier(userMail)
     }
     }
@@ -40,6 +41,8 @@ export class PanierComponent implements OnInit {
   get totalPrice() {
     return this.homeService.panier.reduce((total: number, item: Produit) => total + (item.presentation.prix * item.quantite), 0);
   }
+
+
 
   validerPanier(): void {
     this.openDialog();

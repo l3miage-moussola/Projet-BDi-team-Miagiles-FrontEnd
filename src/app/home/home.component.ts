@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
         }
         let userMail = localStorage.getItem("userMail")
         if(userMail != null){
+          this.authService.setUserMail(userMail)
           this.homeService.getPanier(userMail)
         }
     }
