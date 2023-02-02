@@ -13,9 +13,11 @@
       <mat-card-subtitle style="font-size: small"><i>{{ pres.codeCIP7 }}</i></mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <p>{{ pres.libelle }}</p>
-      <p>{{ pres.prix }} €</p>
+      {{ pres.libelle }}
     </mat-card-content>
+    <mat-card style="width: 73px; margin-left: 300px; background-color: #1EA7CF">
+      <mat-card-content>{{ pres.prix }} €</mat-card-content>
+    </mat-card>
     <mat-card-actions>
       <button *ngIf="!pres.showAdd" mat-icon-button (click)="openDialog(pres)">
         <mat-icon>add_shopping_cart</mat-icon>
