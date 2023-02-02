@@ -11,9 +11,11 @@
     </button>
   </mat-toolbar>
 </div>
-<div class="container" style="margin-top: 15px;">
+<div class="container" style="width: 120%">
   <router-outlet></router-outlet>
 </div>
-<footer class="footer">
-  <span>© 2023 Gromed </span>
-</footer>
+<div *ngIf="auth.isLoggedIN">
+  <footer class="footer">
+    <span>© 2023 Gromed </span>
+  </footer>
+</div>
