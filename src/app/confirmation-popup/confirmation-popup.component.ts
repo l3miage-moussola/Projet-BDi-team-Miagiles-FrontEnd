@@ -3,7 +3,6 @@ import {MatDialog} from "@angular/material/dialog";
 import {
   EnregistrementCommandeTypePopupComponent
 } from "../enregistrement-commande-type-popup/enregistrement-commande-type-popup.component";
-import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {ValiderPanierService} from "../_services/valider-panier.service";
 import {AuthService} from "../_services/auth.service";
@@ -34,10 +33,10 @@ export class ConfirmationPopupComponent {
     this.openDialogEnregistrementCommandeType();
   }
 
-  public validerPanier(isForced:boolean) :void
+  public validerPanier() :void
   {
     this.dialogRef.closeAll();
-    this.validationService.validerPanier(this.userMail, isForced).subscribe(res=> this.resultatValidation = res);
+    //this.validationService.validerPanier(this.userMail, isForced).subscribe(res=> this.resultatValidation = res);
     if(this.resultatValidation.length===0)
     {
       this.dialogRef.open(ConfirmationValidationComponent);
