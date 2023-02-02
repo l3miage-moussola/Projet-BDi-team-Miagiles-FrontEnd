@@ -8,6 +8,7 @@ import {HttpClient} from "@angular/common/http";
 import {ValiderPanierService} from "../_services/valider-panier.service";
 import {AuthService} from "../_services/auth.service";
 import {ConfirmationValidationComponent} from "../confirmation-validation/confirmation-validation.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-confirmation-popup',
@@ -19,7 +20,7 @@ export class ConfirmationPopupComponent {
   private resultatValidation: any;
   private userMail: string;
 
-  constructor(private dialogRef : MatDialog, private http: HttpClient, private validationService : ValiderPanierService, authService: AuthService) {
+  constructor(private dialogRef : MatDialog, private http: HttpClient, private validationService : ValiderPanierService, authService: AuthService, private router: Router) {
     this.resultatValidation=[];
 
     this.userMail = authService.getUserMail();
@@ -41,7 +42,14 @@ export class ConfirmationPopupComponent {
     {
       this.dialogRef.open(ConfirmationValidationComponent);
     }
+    else
+    {
+      this.changeRoute("panier-valide");
+    }
 
 
+  }
+  changeRoute(newRoute:string) {
+    this.router.navigate([newRoute]);
   }
 }
