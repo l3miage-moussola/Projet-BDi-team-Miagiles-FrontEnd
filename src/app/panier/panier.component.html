@@ -27,7 +27,7 @@
         </div>
         <div>
           <p>Total</p>
-          <p>{{ item.presentation.prix * item.quantite }} €</p>
+          <p>{{ (item.presentation.prix * item.quantite).toFixed(2) }} €</p>
         </div>
       </div>
     </mat-card-content>
