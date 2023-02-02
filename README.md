@@ -73,6 +73,13 @@ Vous pouvez utiliser l'identifiant suivant :
 Adresse mail : doctor-who@tardis.net
 mot de passe : mdp
 
+
+
+![img_1.png](img_1.png)
+Vous trouverez la page d'accueil suivante, depuis laquelle vous pourrez chercher par nom de médicament ou par forme pharmaceutique.
+
+Vous pourrez ensuite naviguer dans le panier (icone dans la navbar).
+
 ## IV Organisation et difficultés
 &nbsp;&nbsp;&nbsp;&nbsp;Pour la partie d'analyse fonctionnelle, nous avons fonctionné au consensus : nous avons lu le sujet à 4,
 avons débattu sur la façon de modéliser les BPMN, MCD et MLD ensembles jusqu'à obtenir un résultat
