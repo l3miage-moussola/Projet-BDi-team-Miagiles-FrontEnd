@@ -4,22 +4,17 @@
 </div>
 
 <div *ngIf="homeService.panier.length !== 0" style="text-align: center">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title style="font-size: xx-large">Mon panier</mat-card-title>
-      <mat-card-subtitle style="font-size: large" *ngIf="homeService.panier.length > 1">{{ homeService.panier.length }}
-        articles
-      </mat-card-subtitle>
-      <mat-card-subtitle style="font-size: large"
-                         *ngIf="homeService.panier.length === 1">{{ homeService.panier.length }} article
-      </mat-card-subtitle>
-    </mat-card-header>
-  </mat-card>
+  <span>
+    <p style="font-weight: bold; font-size: xx-large">Mon panier</p>
+    <p *ngIf="homeService.panier.length > 1" style="font-style: italic; font-size: medium">{{ homeService.panier.length }} articles</p>
+    <p *ngIf="homeService.panier.length === 1" style="font-style: italic; font-size: medium">{{ homeService.panier.length }} article</p>
+  </span>
   <br><br>
   <mat-card class="example-card" *ngFor="let item of homeService.panier">
     <mat-card-header *ngFor="let medicament of item.presentation.medicaments">
-      <mat-card-title style="font-weight: bold">{{ medicament.denomination }}</mat-card-title>
+      <mat-card-title style="font-weight: bold; text-align: center">{{ medicament.denomination }}</mat-card-title>
     </mat-card-header>
+    <br>
     <mat-card-content>
       <div style="display: flex; justify-content: space-around;">
         <div>

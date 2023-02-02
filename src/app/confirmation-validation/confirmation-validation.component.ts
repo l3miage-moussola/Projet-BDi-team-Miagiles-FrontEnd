@@ -14,10 +14,10 @@ export class ConfirmationValidationComponent {
   }
 
   validerPanier(isForced: boolean) {
-    this.validerPanierService.validerPanier(this.authService.getUserMail(),isForced);
+    // this.validerPanierService.validerPanier(this.authService.getUserMail(),isForced);
   }
 
   annulerPanier() {
-    this.validerPanierService.annulerPanier(this.authService.getUserMail());
+    // this.validerPanierService.annulerPanier(this.authService.getUserMail());
   }
 }

@@ -14,7 +14,7 @@
     </mat-card-header>
     <mat-card-content>
       <p>{{ pres.libelle }}</p>
-      <p style="text-align: right; width: 50px;">{{ pres.prix }} €</p>
+      <p>{{ pres.prix }} €</p>
     </mat-card-content>
     <mat-card-actions>
       <button *ngIf="!pres.showAdd" mat-icon-button (click)="openDialog()">

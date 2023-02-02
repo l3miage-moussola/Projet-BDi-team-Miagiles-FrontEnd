@@ -19,12 +19,12 @@ export class AddToCartButtonComponent {
     if(this.quantite>1){
       this.disabled = !this.disabled;
     }
-    
+
   }
 
   rateControl
-  
-  constructor(private homeService: HomeService){
+
+  constructor(private homeService: HomeService, private _snackBar: MatSnackBar){
     this.rateControl = new FormControl("", [Validators.min(1)])
       }
   @Input() show = false
@@ -44,5 +44,11 @@ export class AddToCartButtonComponent {
     }
 
     this.produitEvent.emit(produit);
+
+    this.openSnackBar("Produit ajouté avec succès !", "OK");
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
   }
 }
