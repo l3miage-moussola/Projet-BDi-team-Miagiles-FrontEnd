@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {HomeService, Presentation, Produit} from "../_services/home.service";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -10,7 +11,7 @@ import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 })
 export class AddToCartButtonComponent {
 
-  constructor(private homeService: HomeService) {
+  constructor(private homeService: HomeService, private _snackBar: MatSnackBar) {
 
   }
 
@@ -30,6 +31,6 @@ export class AddToCartButtonComponent {
       quantite: quantity
     }
 
-    this.produitEvent.emit(produit)
+    this.produitEvent.emit(produit);
   }
 }

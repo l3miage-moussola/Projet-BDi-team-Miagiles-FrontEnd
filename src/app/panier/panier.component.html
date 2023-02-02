@@ -38,7 +38,7 @@
     </mat-card-content>
   </mat-card>
   <br>
-  <p style="font-weight: bold">Total {{ totalPrice }} €</p>
+  <p style="font-weight: bold">Total {{ totalPrice.toFixed(2) }} €</p>
 
   <button mat-raised-button (click)="this.validerPanier()">Valider mon panier</button>
   <br>
