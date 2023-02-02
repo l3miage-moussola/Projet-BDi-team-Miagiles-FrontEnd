@@ -78,8 +78,9 @@ pour la fonctionnalité assignée.
 ## Conclusion
 &nbsp;&nbsp;&nbsp;&nbsp;Les fonctionnalités principales de notre application fonctionnent. À savoir : S'authentifier, ajouter un produit
 au panier, valider le panier et l'enregistrement de chacune de ces opérations en base de donnée. Cependant, nous
-ne sommes pas satisfait de notre gestion de la concurrence. Nous n'avons pas pris le temps necessaire pour tester tous les scenarii
+ne sommes pas satisfaits de notre gestion de la concurrence. Nous n'avons pas pris le temps necessaire pour tester tous les scenarii
 de concurence d'accès aux données. Bien que nous soyons assurés que les données restent cohérentes en base, nous ne
 gérons pas suffisament le transfert entre le back et le front pour une navigation compréhensible en cas de tentative de validation 
-d'un produit qui était encore en stock au moment de l'ajout au panier.
+d'un produit qui était encore en stock au moment de l'ajout au panier. Sur une note plus générale, nous avons éprouvé
+des difficultés à nous accorder sur les priorités des tâches et avons trouvé difficile de trouver un consensus pour avancer.
 
