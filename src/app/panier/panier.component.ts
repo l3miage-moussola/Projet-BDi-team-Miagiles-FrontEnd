@@ -47,11 +47,12 @@ export class PanierComponent implements OnInit {
 
 
   async validerPanier(): Promise<void> {
+    let change = false
     if (confirm("Voulez vous valider votre panier?")) {
       console.log("validation en cours......")
       await this.validationService.validerPanier(this.auth.userMail, false).then(async res => {
         this.resultat = res
-        console.log("REEEEEEEESSSSS" + this.resultat)
+        change = true
         if (this.resultat.length != 0) {
           console.log(this.resultat)
           let affichage:string=''
@@ -59,9 +60,15 @@ export class PanierComponent implements OnInit {
           if (confirm("les présentation suivantes " + affichage  + "ne sont plus disponibles voulez-vous les valider le panier ?")) {
             await this.validationService.validerPanier(this.auth.userMail, true)
           }
+          else {
+            change = false
+          }
         }
       })
 
+    }
+    if(change){
+      this.auth.changeRoute('/panier-valide')
     }
   }
 }
