@@ -10,7 +10,7 @@
         Valider le formulaire
       </button> <!-- Ce bouton sert quand on appuie sur le bouton entrée pour valider notre formulaire -->
       <p>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" style="width: 100%;">
           <mat-label>Email address</mat-label>
           <input matInput style="height: 45px;" placeholder="prenom.nom@example.com" formControlName="email" required>
           <mat-error *ngIf="email!.invalid">{{getErrorMessage()}}</mat-error>
