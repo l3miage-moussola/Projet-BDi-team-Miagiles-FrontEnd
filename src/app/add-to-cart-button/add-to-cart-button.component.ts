@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import {HomeService, Presentation, Produit} from "../_services/home.service";
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -28,27 +30,19 @@ export class AddToCartButtonComponent {
   @Input() show = false
   //@Input() indexOfAddToCartButton: number| undefined;
   //@Input() presentationCart: any | undefined;
-  @Input() presentation ! : Presentation
+  @Input() presentation !: Presentation
 
   @Output() produitEvent = new EventEmitter<Produit>;
 
   quantite = 1
 
+  addToCart(item: Presentation, quantity: number) {
+    //this.homeService.addToCart(new PresentationPanier(item,quantity) )
+    let produit: Produit = {
+      presentation: item,
+      quantite: quantity
+    }
 
-addToCart(item:Presentation,quantity:number) {
-   //this.homeService.addToCart(new PresentationPanier(item,quantity) )
-   let produit : Produit = {
-    presentation : item,
-    quantite : quantity
-
-   }
-   
-
-   this.produitEvent.emit(produit)
-
-  
-
-
+    this.produitEvent.emit(produit);
   }
-
 }

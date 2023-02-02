@@ -1,20 +1,18 @@
-<!-- <div *ngIf="show">
-    <input type="number" [(ngModel)]="quantite" min="1"/> -->
-<!-- <button type="button" (click)="addToCart(presentation, quantite)"><span class="material-icons">shopping_cart</span></button> -->
-<!-- <div class="example-button-container">
-  <button (click)="addToCart(presentation, quantite)" mat-stroked-button color="accent" aria-label="Example icon button with a plus one icon">
-    <mat-icon>add_cart</mat-icon>
+<div>
+  <button mat-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
   </button>
-</div> -->
-<!-- <div class="bs-example">
-  <div class="container">
-      <div class="row">
-          <div class="col-md-12 bg-light text-right">
-              <button type="button" class="btn btn-warning ml-2">Save</button>
-          </div>
-      </div>
+  <h1 mat-dialog-title>Quantité</h1>
+  <div mat-dialog-content style="text-align: center">
+    <input type="number" value="1" min="1" [(ngModel)]="quantite" class="form-control">
+    <br>
+    <button mat-dialog-close (click)="addToCart(presentation, quantite)" class="btn btn-outline-secondary"
+            type="button">
+      Ajouter
+    </button>
   </div>
 </div>
+<<<<<<< HEAD
 </div> -->
 
 <div *ngIf="show" class="input-group mb-3">
@@ -26,3 +24,5 @@
 
 
  
+=======
+>>>>>>> origin/dernierDevCam
