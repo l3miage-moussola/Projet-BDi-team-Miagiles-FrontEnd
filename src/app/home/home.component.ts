@@ -40,9 +40,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(){
 
     this.homeService.getPanier(this.authService.userMail)
-    console.log(this.authService.userMail)
-    console.log("panier"+ this.homeService.getPanier(this.authService.userMail))
-
   }
 
   pageChanged(event: PageEvent) {
@@ -57,7 +54,6 @@ export class HomeComponent implements OnInit {
 
   addToCart(produit : Produit): void{
     this.homeService.addToCart(produit, this.homeService.commande.numeroCommande)
-    console.log(produit, "OOOOOOOOOOOOOO"+this.homeService.commande.numeroCommande)
   }
 
   search(denom : string) : void {
