@@ -10,16 +10,16 @@
         Valider le formulaire
       </button> <!-- Ce bouton sert quand on appuie sur le bouton entrée pour valider notre formulaire -->
       <p>
-        <mat-form-field appearance="fill" style="width: 100%">
+        <mat-form-field appearance="fill">
           <mat-label>Email address</mat-label>
-          <input matInput placeholder="prenom.nom@example.com" formControlName="email" required>
+          <input matInput style="height: 45px;" placeholder="prenom.nom@example.com" formControlName="email" required>
           <mat-error *ngIf="email!.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field appearance="fill">
           <mat-label>Password</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+          <input matInput style="height: 45px;" [type]="hide ? 'password' : 'text'" formControlName="password" required>
           <mat-error *ngIf="password!.invalid">{{getErrorMessage()}}</mat-error>
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                   [attr.aria-pressed]="hide">
