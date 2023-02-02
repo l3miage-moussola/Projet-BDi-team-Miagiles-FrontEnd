@@ -48,16 +48,17 @@ export class HomeComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-    if (!this.authService.isLoggedIN) {
+  ngOnInit(){
+    if(!this.authService.isLoggedIN){
       let login = localStorage.getItem("login")
-      if (login == "true") {
-        this.authService.isLoggedIN = true
-      }
-      let userMail = localStorage.getItem("userMail")
-      if (userMail != null) {
-        this.homeService.getPanier(userMail)
-      }
+        if(login=="true"){
+          this.authService.isLoggedIN = true
+        }
+        let userMail = localStorage.getItem("userMail")
+        if(userMail != null){
+          this.authService.setUserMail(userMail)
+          this.homeService.getPanier(userMail)
+        }
     }
   }
 
@@ -85,10 +86,10 @@ export class HomeComponent implements OnInit {
     this.homeService.addToCart(produit, this.homeService.commande.numeroCommande)
   }
 
-  search(denom: string): void {
-    this.homeService.search(denom).subscribe(res => {
-        this.presentations = res
-      }
+  search(denom : string) : void {
+    this.homeService.search(denom).subscribe( res =>{
+      this.dataSource.content = res
+    }
     )
   }
 

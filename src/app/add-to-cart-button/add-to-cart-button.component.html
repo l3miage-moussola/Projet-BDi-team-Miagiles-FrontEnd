@@ -12,3 +12,14 @@
     </button>
   </div>
 </div>
+
+
+<div *ngIf="show" class="input-group mb-3">
+  <input type="number"  required min="1" [(ngModel)]="quantite" class="form-control" [formControl]="rateControl">
+  <div class="input-group-append">
+    <button [disabled]="quantite<1" (click)="addToCart(presentation, quantite)" class="btn btn-outline-secondary" type="button">Ajouter</button>
+  </div>
+</div>
+
+
+

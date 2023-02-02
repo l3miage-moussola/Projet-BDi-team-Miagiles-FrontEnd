@@ -90,7 +90,7 @@ export class HomeService {
 
   commande! : Commande
 
-  panier : Produit[] = []
+  panier! : Produit[]
 
   presentations! : Presentation[]
 
@@ -98,7 +98,7 @@ export class HomeService {
   presmeds !: Observable<PresMed[]>
 
   constructor(private http: HttpClient) {
-    // this.presentationDeCommandeTest=new PresentationDeCommande()
+    this.panier = []
     }
 
   getListPresentationTot(pageSize:number, pageIndex:number):Observable<PagePresentation> {
@@ -141,7 +141,6 @@ export class HomeService {
     await firstValueFrom(this.http.get<PresentationDeCommande[]>('/api/commande_pres/')).then( e =>
       {
         e.forEach( compres => {
-          console.log(e)
           if(compres.presentationCommande.commande==commande.numeroCommande){
             let pres : Presentation
             this.getPresentation(compres.presentationCommande.presentation).then( e => {
@@ -160,6 +159,7 @@ export class HomeService {
   }
 
   async getPanier(adresseMail : string) : Promise<void>{
+    console.log("getting panier")
     await lastValueFrom(this.http.get<Commande>('api/commandes/getPanier?userMail=' + adresseMail)).then(e => {
       console.log(e)
       this.commande = e
