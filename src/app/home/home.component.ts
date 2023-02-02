@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   rows = 10;
 
   @Input() quantitesInputNumber: number[]=[];
+  numeroCommande: number = 0;
 
   constructor(private homeService : HomeService , private authService : AuthService) {
     this.presentations = []
@@ -33,12 +34,15 @@ export class HomeComponent implements OnInit {
           this.pageSize = res.size!;
           this.pageIndex= res.number!;
       })
+
   }
 
   ngOnInit(){
+
     this.homeService.getPanier(this.authService.userMail)
     console.log(this.authService.userMail)
     console.log("panier"+ this.homeService.getPanier(this.authService.userMail))
+
   }
 
   pageChanged(event: PageEvent) {
@@ -52,8 +56,8 @@ export class HomeComponent implements OnInit {
   }
 
   addToCart(produit : Produit): void{
-    this.homeService.addToCart(produit, this.commande)
-    console.log(produit)
+    this.homeService.addToCart(produit, this.homeService.commande.numeroCommande)
+    console.log(produit, "OOOOOOOOOOOOOO"+this.homeService.commande.numeroCommande)
   }
 
   search(denom : string) : void {

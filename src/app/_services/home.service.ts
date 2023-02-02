@@ -5,7 +5,7 @@ import {firstValueFrom, lastValueFrom, Observable} from "rxjs";
 
 export interface PresentationCommande {
   presentation : bigint,
-  commande : bigint
+  commande : number
 }
 
 export interface Presentation{
@@ -42,7 +42,7 @@ export interface PageableObject {
 }
 
 export interface Commande{
-  numeroCommande : bigint,
+  numeroCommande : number,
   isType : boolean,
   nomCmmande : string | null,
   etatCommande : string
@@ -122,10 +122,10 @@ export class HomeService {
 
 
 
-  addToCart(produit : Produit, commande : Commande) {
+  addToCart(produit : Produit, numCommande : number) {
     this.panier.push(produit);
     this.http.post<PresentationDeCommande>("/api/commande_pres/addToCart", {presentationCommande : {presentation : produit.presentation.codeCIP7,
-                                                                                                    commande : commande.numeroCommande},
+                                                                                                    commande : numCommande},
                                                                             quantite : produit.quantite} ).subscribe( e => console.log(e))
 
   }
