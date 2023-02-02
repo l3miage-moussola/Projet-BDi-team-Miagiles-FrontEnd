@@ -66,7 +66,14 @@ stock que pour l'un des deux.
 leur affordance dans la mesure où une grande partie des utilisateurs auront déjà été confrontés à des composants
 similaires. (Comme une icone de caddie pour aller au panier par exemple).
 
-## III Organisation et difficultés
+## III Utilisation
+&nbsp;&nbsp;&nbsp;&nbsp;Voici un petit guide imagé pour l'utilisation de notre implémentation de l'application Gromed :
+![img.png](img.png)
+Vous pouvez utiliser l'identifiant suivant : 
+Adresse mail : doctor-who@tardis.net
+mot de passe : mdp
+
+## IV Organisation et difficultés
 &nbsp;&nbsp;&nbsp;&nbsp;Pour la partie d'analyse fonctionnelle, nous avons fonctionné au consensus : nous avons lu le sujet à 4,
 avons débattu sur la façon de modéliser les BPMN, MCD et MLD ensembles jusqu'à obtenir un résultat
 satisfaisant pour tout le monde. Pour l'initialisation de la BD, du Backend et du Frontend,
