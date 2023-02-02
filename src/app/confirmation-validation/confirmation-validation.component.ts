@@ -18,6 +18,6 @@ export class ConfirmationValidationComponent {
   }
 
   annulerPanier() {
-    // this.validerPanierService.annulerPanier(this.authService.getUserMail());
+    //this.validerPanierService.annulerPanier(this.authService.getUserMail());
   }
 }
