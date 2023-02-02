@@ -17,14 +17,9 @@
       <p style="text-align: right; width: 50px;">{{ pres.prix }} €</p>
     </mat-card-content>
     <mat-card-actions>
-      <button *ngIf="!pres.showAdd" mat-icon-button (click)="showClick(pres)">
+      <button *ngIf="!pres.showAdd" mat-icon-button (click)="openDialog()">
         <mat-icon>add_shopping_cart</mat-icon>
       </button>
-      <app-add-to-cart-button  [show]="pres.showAdd"
-                                     [presentation]="pres"
-                                     (produitEvent)="addToCart($event)">
-
-      </app-add-to-cart-button>
     </mat-card-actions>
   </mat-card>
 </div>

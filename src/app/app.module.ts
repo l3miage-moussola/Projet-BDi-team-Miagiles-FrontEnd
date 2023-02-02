@@ -27,6 +27,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { AddToCartButtonComponent } from './add-to-cart-button/add-to-cart-button.component';
 import { MaterialModule } from './material/material.module';
 import {ConfirmationValidationComponent} from "./confirmation-validation/confirmation-validation.component";
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import {ConfirmationValidationComponent} from "./confirmation-validation/confirm
     MatSelectModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    MatSnackBarModule
   ],
   providers: [
     authInterceptorProviders,
