@@ -59,10 +59,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-nodejs-example:build",
-            "proxyConfig": "./src/proxy.conf.json",
-            "host": "0.0.0.0",
-            "port": "4200"
+            "browserTarget": "Gromed:build",
+            "proxyConfig": "./src/proxy.conf.json"
           },
           "configurations": {
             "production": {

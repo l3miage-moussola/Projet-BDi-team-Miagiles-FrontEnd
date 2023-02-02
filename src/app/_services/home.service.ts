@@ -130,8 +130,8 @@ export class HomeService {
 
   }
 
-  search(denom : string) : Observable<Presentation[]>{
-    return this.http.get<Presentation[]>("/api/presentations/meds/" + denom)
+  search(denom : string , formePharma : string) : Observable<Presentation[]>{
+    return this.http.get<Presentation[]>("/api/presentations/findByFiltre?denom=" + denom +"&formePharma="+formePharma)
   }
 
 
@@ -155,7 +155,7 @@ export class HomeService {
         })
       })
 
-      
+
   }
 
   async getPanier(adresseMail : string) : Promise<void>{

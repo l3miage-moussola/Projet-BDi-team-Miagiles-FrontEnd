@@ -2,6 +2,6 @@
   <input type="search" [(ngModel)]="denomination" class="form-control rounded" placeholder="Search by name" aria-label="Search" aria-describedby="search-addon" />
   <button style="margin-left: 5px" type="button" (click)="sendDenom()" class="btn btn-outline-primary">Search</button>
   <div style="margin: 10px;"></div>
-  <input type="search" [(ngModel)]="denomination" class="form-control rounded" placeholder="Search by pharmaceutical form" aria-label="Search" aria-describedby="search-addon" />
-  <button style="margin-left: 5px" type="button" class="btn btn-outline-primary">Search</button>
+  <input type="search" [(ngModel)]="formePharma" class="form-control rounded" placeholder="Search by pharmaceutical form" aria-label="Search" aria-describedby="search-addon" />
+  <button style="margin-left: 5px" type="button" class="btn btn-outline-primary" (click)="sendDenom()">Search</button>
 </div>

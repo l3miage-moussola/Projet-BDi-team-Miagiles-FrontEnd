@@ -12,6 +12,7 @@ import {PageEvent} from "@angular/material/paginator";
 import {AuthService} from "../_services/auth.service";
 import {MatDialog} from "@angular/material/dialog";
 import {AddToCartButtonComponent} from "../add-to-cart-button/add-to-cart-button.component";
+import {Recherche} from "../search-bar/search-bar.component";
 
 @Component({
   selector: 'app-home',
@@ -86,8 +87,9 @@ export class HomeComponent implements OnInit {
     this.homeService.addToCart(produit, this.homeService.commande.numeroCommande)
   }
 
-  search(denom : string) : void {
-    this.homeService.search(denom).subscribe( res =>{
+  search(event : string[]) : void {
+
+    this.homeService.search(event[0],event[1]).subscribe( res =>{
       this.dataSource.content = res
     }
     )

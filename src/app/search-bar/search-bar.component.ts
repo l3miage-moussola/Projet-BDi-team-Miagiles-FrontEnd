@@ -2,16 +2,23 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {map, Observable, startWith} from "rxjs";
 import {FormControl} from "@angular/forms";
 
+
+export interface Recherche{
+  denom : string ,
+  formePharma : string
+}
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.css']
 })
+
 export class SearchBarComponent implements OnInit{
 
   denomination = ''
-
-  @Output() denomEvent = new EventEmitter<string>;
+  formePharma = ''
+  recherche !:Recherche
+  @Output() event = new EventEmitter<string[]>;
 
   constructor() {
 
@@ -39,7 +46,7 @@ export class SearchBarComponent implements OnInit{
 
 
   sendDenom() : void{
-    this.denomEvent.emit(this.denomination)
+    this.event.emit([this.denomination,this.formePharma])
   }
 
 }
